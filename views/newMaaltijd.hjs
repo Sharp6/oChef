@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/datepicker.css' />
+    
+  </head>
+  <body>
+  	{{> menu}}
+
+		<div class="container">
+    	<h1>{{ title }}</h1>    	
+
+    	<form class="form-horizontal" action="newMaaltijd" method="post">
+    		<fieldset>
+    			<legend>Voer een nieuwe maaltijd in</legend>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="gerecht">Gerecht</label>
+            <select class="form-control" name="gerecht" id="gerecht">
+              {{#gerechten}}
+              <option value="{{_id}}">{{naam}}</option>
+              {{/gerechten}}
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="datum">Datum</label>
+            <input type="text" class="datepicker" value="12-02-2012" id="datum" name="datum">
+          </div>
+
+    			<div class="form-group">
+    				<label class="col-md-4 control-label" for="nota">Nota</label>
+    				<textarea class="form-control" id="nota" name="nota"></textarea>
+    			</div>
+
+    			<div class="form-group">
+    				
+    				<div class="col-md-4">
+    					<button id="btnSave" name="btnSave" class="btn btn-primary">Bewaar</button>
+    				</div>
+    			</div>
+
+    		</fieldset>
+    	</form>
+    </div>
+
+    <script src="javascripts/jquery-2.1.3.min.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+    <script src="javascripts/bootstrap-datepicker.js"></script>
+    <script>
+    $(function() {
+      $('.datepicker').datepicker({
+        format: 'mm.dd.yyyy'
+      });
+    });
+    alert(title);
+    </script>
+  </body>
+</html>
