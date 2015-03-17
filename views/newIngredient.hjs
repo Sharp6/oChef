@@ -34,23 +34,23 @@
     				<textarea class="form-control" id="nota" name="nota" data-bind="text:nota"></textarea>
     			</div>
 
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="maandenInSeizoen">In seizoen:</label>
-                    <select multiple class="form-control" id="maandenInSeizoen" data-bind="selectedOptions: maandenInSeizoen">
-                      <option value="1">Jan</option>
-                      <option value="2">Feb</option>
-                      <option value="3">Maart</option>
-                      <option value="4">April</option>
-                      <option value="5">Mei</option>
-                      <option value="6">Juni</option>
-                      <option value="7">Juli</option>
-                      <option value="8">Aug</option>
-                      <option value="9">Sep</option>
-                      <option value="10">Okt</option>
-                      <option value="11">Nov</option>
-                      <option value="12">Dec</option>
-                    </select>
-                </div>
+          <div class="form-group">
+              <label class="col-md-4 control-label" for="maandenInSeizoen">In seizoen:</label>
+              <select multiple class="form-control" id="maandenInSeizoen" data-bind="selectedOptions: maandenInSeizoen">
+                <option value="1">Jan</option>
+                <option value="2">Feb</option>
+                <option value="3">Maart</option>
+                <option value="4">April</option>
+                <option value="5">Mei</option>
+                <option value="6">Juni</option>
+                <option value="7">Juli</option>
+                <option value="8">Aug</option>
+                <option value="9">Sep</option>
+                <option value="10">Okt</option>
+                <option value="11">Nov</option>
+                <option value="12">Dec</option>
+              </select>
+          </div>
 
     			<div class="form-group">
     				<div class="col-md-4">
