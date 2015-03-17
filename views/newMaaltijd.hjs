@@ -21,11 +21,7 @@
 
           <div class="form-group">
             <label class="col-md-4 control-label" for="gerecht">Gerecht</label>
-            <select class="form-control" name="gerecht" id="gerecht">
-              {{#gerechten}}
-              <option value="{{_id}}">{{naam}}</option>
-              {{/gerechten}}
-            </select>
+            <select class="form-control" id="gerecht" data-bind="options: availableGerechten, value: gerecht"></select>
           </div>
 
           <div class="form-group">
@@ -37,6 +33,12 @@
     				<label class="col-md-4 control-label" for="nota">Nota</label>
     				<textarea class="form-control" id="nota" name="nota"></textarea>
     			</div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="ingredienten">Ingredienten:</label>
+            <select multiple class="form-control" id="ingredienten" name="ingredienten[]">
+            </select>
+          </div>
 
     			<div class="form-group">
     				

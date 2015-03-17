@@ -45,3 +45,12 @@ exports.list = function(req,res) {
 			});
 		});
 };
+
+exports.getIngredienten = function(req,res) {
+	var query = Ingredient.find();
+
+	query.exec(function(err,results) {
+		res.json(results);
+	});
+	
+};

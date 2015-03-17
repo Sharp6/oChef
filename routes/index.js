@@ -37,4 +37,12 @@ router.get('/newIngredient', function(req,res) {
 	return ingredientCtrl.newIngredient(req,res);
 }); 
 
+router.post('/newIngredient', function(req,res) {
+	return ingredientCtrl.create(req,res);
+});
+
+router.get('/api/ingredienten', function(req,res) {
+	return ingredientCtrl.getIngredienten(req,res);
+});
+
 module.exports = router;

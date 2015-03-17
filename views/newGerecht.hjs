@@ -32,6 +32,11 @@
     				<textarea class="form-control" id="nota" name="nota"></textarea>
     			</div>
 
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="ingredienten">Ingredienten:</label>
+                    <select multiple class="form-control" id="ingredienten" data-bind="options: availableIngredienten, optionText:'name', selectedOptions: ingredienten"></select>
+                  </div>
+
     			<div class="form-group">
     				
     				<div class="col-md-4">
