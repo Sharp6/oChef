@@ -17,11 +17,12 @@ exports.create = function(req,res) {
 	var entry = new Ingredient({
 		naam: req.body.naam,
 		beschrijving: req.body.beschrijving,
-		nota: req.body.nota
+		nota: req.body.nota,
+		maandenInSeizoen: req.body.maandenInSeizoen
 	});
 	entry.save();
 
-	res.redirect(301, '/');
+	res.json("hello");
 };
 
 exports.newIngredient = function(req,res) {
