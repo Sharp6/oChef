@@ -24,28 +24,24 @@ exports.create = function(req,res) {
 	res.redirect(301, '/');
 };
 
-exports.newMaaltijd = function(req,res) {
-	var query = Gerecht.find();
-	query.exec(function(err,results){
-		res.render('newMaaltijd', { 
-			partials: partials,
-			title: 'oChef - nieuwe maaltijd', 
-			activeMenuItemChecker: activeMenuItemChecker,
-			gerechten: results
-		});
+exports.newIngredient = function(req,res) {
+	res.render('newIngredient', { 
+		partials: partials,
+		title: 'oChef - nieuw ingredient', 
+		activeMenuItemChecker: activeMenuItemChecker
 	});
 };
 
 exports.list = function(req,res) {
-	var query = Maaltijd.find();
+	var query = Ingredient.find();
 
 	query.limit(12)
 		.exec(function(err,results){
-			res.render('maaltijdLijst', {
+			res.render('ingredientLijst', {
 				partials: partials,
 				activeMenuItemChecker: activeMenuItemChecker,
-				title: 'Maaltijden - Lijst', 
-				maaltijden:results
+				title: 'Ingredienten - Lijst', 
+				ingredienten:results
 			});
-		})
+		});
 };

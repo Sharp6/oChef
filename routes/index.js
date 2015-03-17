@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var gerechtCtrl = require('../controllers/gerecht.server.controller');
 var maaltijdCtrl = require('../controllers/maaltijd.server.controller');
+var ingredientCtrl = require('../controllers/ingredient.server.controller');
 var mainCtrl = require('../controllers/main.server.controller');
 
 /* GET home page. */
@@ -30,5 +31,10 @@ router.get('/newMaaltijd', function(req,res) {
 router.post('/newMaaltijd', function(req,res) {
 	return maaltijdCtrl.create(req,res);
 });
+
+// INGREDIENTEN
+router.get('/newIngredient', function(req,res) {
+	return ingredientCtrl.newIngredient(req,res);
+}); 
 
 module.exports = router;
