@@ -1,0 +1,11 @@
+<html>
+	<head>
+		<script src="/libraries/require.min.js" data-main="/javascript/ingredientMain.js"></script>
+	
+	</head>
+	
+	<body>
+		Hello World.
+		
+	</body>
+</html>		

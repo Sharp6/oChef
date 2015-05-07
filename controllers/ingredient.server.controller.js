@@ -1,7 +1,7 @@
 var Ingredient = require('../models/ingredient.server.model.js');
 var partials = {
 	menu: 'menu'
-}
+};
 var activeMenu = "ingredient";
 var activeMenuItemChecker = function() {
 	return function(text,render) {
@@ -53,4 +53,13 @@ exports.getIngredienten = function(req,res) {
 		res.json(results);
 	});
 	
+};
+
+exports.renderIngredienten = function(req,res) {
+	res.render('ingredienten',
+	{ 
+		partials: partials,
+		title: 'oChef - Ingredienten', 
+		activeMenuItemChecker: activeMenuItemChecker
+	});	
 };

@@ -45,4 +45,9 @@ router.get('/api/ingredienten', function(req,res) {
 	return ingredientCtrl.getIngredienten(req,res);
 });
 
+router.route('/ingredienten')
+	.get(function(req,res) {
+		return ingredientCtrl.renderIngredienten(req,res);
+	});
+
 module.exports = router;
