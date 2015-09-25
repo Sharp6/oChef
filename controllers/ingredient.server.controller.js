@@ -13,9 +13,9 @@ exports.getIngredienten = function(req,res) {
 
 // Render controllers
 exports.renderIngredienten = function(req,res) {
-	res.render('ingredienten', 
+	res.render('container', 
 		{
-			partials: { menu: 'menu' }
+			partials: { body: 'ingredienten' }
 		});
 };
 

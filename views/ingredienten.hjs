@@ -1,13 +1,18 @@
-<html>
-	<head>
-		<script src="/libraries/require.min.js" data-main="/javascript/ingredientMain.js"></script>
-	
-	</head>
-	
-	<body>
-		<ul data-bind="foreach:ingredienten">
-			<li data-bind="text:naam"></li>
-		</ul>
-		
-	</body>
-</html>		
+<table class="table">
+
+	<thead>
+		<tr>
+			<th>Naam</th>
+		</tr>
+	</thead>
+
+	<tbody data-bind="foreach:ingredienten">
+
+		<tr>
+			<td data-bind="text:naam"></td>
+		</tr>
+
+	</tbody>
+</table>
+
+<script src="/libraries/require.min.js" data-main="/javascript/ingredientMain.js"></script>
