@@ -5,7 +5,9 @@
 	</head>
 	
 	<body>
-		Hello World.
+		<ul data-bind="foreach:ingredienten">
+			<li data-bind="text:naam"></li>
+		</ul>
 		
 	</body>
 </html>		

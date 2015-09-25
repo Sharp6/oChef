@@ -1,37 +1,12 @@
 require.config({
 	paths: {
-		jquery: '/libraries/jquery-2.1.3.min'
+		jquery: '/libraries/jquery-2.1.3.min',
+		knockout: '/libraries/knockout-3.3.0'
 	}
 });
 
-define("ingredientData", [], function(){
-	"use strict";
-	var STORE_NAME = "ingredienten";
-	
-	var saveIngredientData = function(ingredienten) {
-		localStorage.setItem(STORE_NAME, JSON.stringify(ingredienten));
-	};
-	
-	var loadIngredientData = function() {
-		var storedIngredienten = localStorage.getItem(STORE_NAME);
-		if(storedIngredienten) {
-			return JSON.parse(storedIngredienten);
-		}
-		return [];
-	};
-	
-	var clearIngredientData = function() {
-		localStorage.removeItem(STORE_NAME);
-	}; 
-	
-	return {
-		save : saveIngredientData,
-		load : loadIngredientData,
-		clear : clearIngredientData
-	};
-});
-
-
-require(["jquery", "ingredientData"], function($, ingredientData) {
-			
+require(["jquery", "knockout", "viewmodels/ingredienten.vm.client"], function($, ko, IngredientVM) {
+	var iVM = new IngredientVM();
+	iVM.init();
+	ko.applyBindings(iVM);
 });

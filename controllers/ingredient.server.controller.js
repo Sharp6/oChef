@@ -1,4 +1,25 @@
 var Ingredient = require('../models/ingredient.server.model.js');
+
+// API controllers
+exports.getIngredienten = function(req,res) {
+	var query = Ingredient.find();
+
+	query.exec(function(err,results) {
+		res.json(results);
+	});
+	
+};
+
+
+// Render controllers
+exports.renderIngredienten = function(req,res) {
+	res.render('ingredienten', 
+		{
+			partials: { menu: 'menu' }
+		});
+};
+
+/*
 var partials = {
 	menu: 'menu'
 };
@@ -12,6 +33,7 @@ var activeMenuItemChecker = function() {
 		}
 	};
 };
+*/
 
 exports.create = function(req,res) {
 	var entry = new Ingredient({
@@ -26,10 +48,8 @@ exports.create = function(req,res) {
 };
 
 exports.newIngredient = function(req,res) {
-	res.render('newIngredient', { 
-		partials: partials,
-		title: 'oChef - nieuw ingredient', 
-		activeMenuItemChecker: activeMenuItemChecker
+	res.render('newIngredient', {
+		partials: { menu: 'menu' }
 	});
 };
 
@@ -39,7 +59,7 @@ exports.list = function(req,res) {
 	query.limit(12)
 		.exec(function(err,results){
 			res.render('ingredientLijst', {
-				partials: partials,
+				//partials: partials,
 				activeMenuItemChecker: activeMenuItemChecker,
 				title: 'Ingredienten - Lijst', 
 				ingredienten:results
@@ -47,20 +67,4 @@ exports.list = function(req,res) {
 		});
 };
 
-exports.getIngredienten = function(req,res) {
-	var query = Ingredient.find();
 
-	query.exec(function(err,results) {
-		res.json(results);
-	});
-	
-};
-
-exports.renderIngredienten = function(req,res) {
-	res.render('ingredienten',
-	{ 
-		partials: partials,
-		title: 'oChef - Ingredienten', 
-		activeMenuItemChecker: activeMenuItemChecker
-	});	
-};
