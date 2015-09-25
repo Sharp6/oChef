@@ -4,6 +4,7 @@ define(["knockout", "da/ingredient.da.client", "models/ingredient.model.client"]
 		var self = this;
 
 		self.ingredienten = ko.observableArray();
+		self.currentIngredient = ko.observable();
 
 		self.loadIngredienten = function() {
 			ingredientDA.load()
