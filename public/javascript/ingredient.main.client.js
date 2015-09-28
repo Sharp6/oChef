@@ -17,4 +17,7 @@ require(["jquery", "bootstrap", "knockout", "viewmodels/ingredienten.vm.client"]
 	var iVM = new IngredientVM();
 	iVM.init();
 	ko.applyBindings(iVM);
+
+	$('.nav li').removeClass('active');
+ 	$('#ingredientenMenu').addClass('active');
 });

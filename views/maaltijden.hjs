@@ -1,0 +1,85 @@
+<table class="table">
+
+	<thead>
+		<tr>
+			<th>Datum</th>
+			<th>Gerecht</th>
+      <th>Details</th>
+		</tr>
+
+	</thead>
+
+	<tbody data-bind="foreach:maaltijdenOpPagina">
+
+		<tr data-bind="css: { success: $parent.isCurrentMaaltijd($data) }, click:$parent.currentMaaltijd">
+			<td data-bind="text:datum"></td>
+      <td data-bind="text:gerecht() ? gerecht().naam : 'gerecht toevoegen'"></td>
+			<td><button class="btn btn-xs" data-toggle="modal" data-target="#myModal">details</button></td>
+		</tr>
+
+	</tbody>
+</table>
+
+<div>
+  <ul class="pagination pull-left"> 
+    <li><a href="#" data-bind="click:previous">&laquo;</a></li>
+    <li><a href="#" data-bind="text:displayedPageNumber"></a></li>
+    <li><a href="#" data-bind="click:next">&raquo;</a></li>
+  </ul>
+
+  <button class="btn btn-sm pull-right addButton" data-bind="click:createMaaltijd">+</button>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" data-bind="with:currentMaaltijd">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel" data-bind="text:datum"></h4>
+      </div>
+
+      <div class="modal-body">
+
+        <div>
+          <h5>Datum</h5>
+          <span data-bind="text:datum, visible:$parent.notEditMode"></span>
+          <input type="text" data-bind="value:datum, visible:$parent.editMode" />
+        </div>
+
+      	<div>
+          <h5>Nota</h5>
+          <p data-bind="text:nota, visible: $parent.notEditMode"></p>
+          <textarea class="form-control" placeholder="Here can be your nice text" rows="3" data-bind="value:nota, visible:$parent.editMode"></textarea>
+        </div>
+
+        <div>
+          <h5>Gerecht</h5>
+          <span data-bind="text:gerecht() ? gerecht().naam : 'gerecht toevoegen', visible:$parent.notEditMode"></span>
+          <select data-bind="options:$parent.allGerechten, optionsText:'naam', value: $parent.selectedGerecht, optionsCaption: 'Kies gerecht', visible:$parent.editMode">
+          </select>
+          <button class="btn btn-sm" data-bind="click:$parent.confirmGerecht">confirm</button>
+        </div>
+
+        <div>
+          <h5>Admin-acties</h5>
+  				<p>
+  					<button class="btn btn-success btn-xs" data-bind="css: $parent.editModeClass, click:$parent.switchEditMode">Edit mode</button>
+  					<button class="btn btn-danger btn-xs" data-bind="click:$parent.removeCurrentMaaltijd">Delete</button>
+  				</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="left-side">
+            <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Sluit</button>
+        </div>
+        <div class="divider"></div>
+        <div class="right-side">
+            <button type="button" data-bind="click:save" class="btn btn-success btn-simple">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/libraries/require.min.js" data-main="/javascript/maaltijd.main.client.js"></script>

@@ -3,16 +3,97 @@
 	<thead>
 		<tr>
 			<th>Naam</th>
+			<th>Details</th>
 		</tr>
+
 	</thead>
 
-	<tbody data-bind="foreach:ingredienten">
+	<tbody data-bind="foreach:ingredientenOpPagina">
 
-		<tr>
+		<tr data-bind="css: { success: $parent.isCurrentIngredient($data) }, click:$parent.currentIngredient">
 			<td data-bind="text:naam"></td>
+			<td><button class="btn btn-xs" data-toggle="modal" data-target="#myModal">details</button></td>
 		</tr>
 
 	</tbody>
 </table>
 
-<script src="/libraries/require.min.js" data-main="/javascript/ingredientMain.js"></script>
+<div>
+  <ul class="pagination pull-left"> 
+    <li><a href="#" data-bind="click:previous">&laquo;</a></li>
+    <li><a href="#" data-bind="text:displayedPageNumber"></a></li>
+    <li><a href="#" data-bind="click:next">&raquo;</a></li>
+  </ul>
+
+  <button class="btn btn-sm pull-right addButton" data-bind="click:createIngredient">+</button>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" data-bind="with:currentIngredient">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel" data-bind="text:naam, visible:$parent.notEditMode"></h4>
+        <input type="text" data-bind="value:naam, visible:$parent.editMode" />
+      </div>
+
+      <div class="modal-body">
+
+      	<div>
+          <h5>Beschrijving</h5>
+          <p data-bind="text:beschrijving, visible: $parent.notEditMode"></p>
+          <textarea class="form-control" placeholder="Here can be your nice text" rows="3" data-bind="value:beschrijving, visible:$parent.editMode"></textarea>
+        </div>
+
+        <div>
+          <h5>In seizoen</h5>
+          <div data-bind="foreach:maandenInSeizoen, visible: $parent.notEditMode">
+          	<span data-bind="text:$parent.getMonth($data)" class="label label-info"></span>
+          </div>
+          <div class="row" data-bind="visible: $parent.editMode">
+          	<div class="col-md-3">
+          		<input type="checkbox" data-bind="checked:maandenInSeizoen, checkedValue: 1"> jan<br />
+          		<input type="checkbox" data-bind="checked:maandenInSeizoen, checkedValue: 2"> feb</br>
+          		<input type="checkbox" data-bind="checked:maandenInSeizoen, checkedValue: 3"> maa
+          	</div>
+          	<div class="col-md-3">
+          		<input type="checkbox" data-bind="checked:maandenInSeizoen, checkedValue: 4"> apr<br />
+          		<input type="checkbox" data-bind="checked:maandenInSeizoen, checkedValue: 5"> mei</br>
+          		<input type="checkbox" data-bind="checked:maandenInSeizoen, checkedValue: 6"> jun
+          	</div>
+          	<div class="col-md-3">
+          		<input type="checkbox" data-bind="checked:maandenInSeizoen, checkedValue: 7"> jul<br />
+          		<input type="checkbox" data-bind="checked:maandenInSeizoen, checkedValue: 8"> aug</br>
+          		<input type="checkbox" data-bind="checked:maandenInSeizoen, checkedValue: 9"> sep
+          	</div>
+          	<div class="col-md-3">
+          		<input type="checkbox" data-bind="checked:maandenInSeizoen, checkedValue: 10"> okt<br />
+          		<input type="checkbox" data-bind="checked:maandenInSeizoen, checkedValue: 11"> nov</br>
+          		<input type="checkbox" data-bind="checked:maandenInSeizoen, checkedValue: 12"> dec
+          	</div>
+          </div>       
+        </div>
+
+        <div>
+          <h5>Admin-acties</h5>
+  				<p>
+  					<button class="btn btn-success btn-xs" data-bind="css: $parent.editModeClass, click:$parent.switchEditMode">Edit mode</button>
+  					<button class="btn btn-danger btn-xs" data-bind="click:$parent.removeCurrentIngredient">Delete</button>
+  				</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="left-side">
+            <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Sluit</button>
+        </div>
+        <div class="divider"></div>
+        <div class="right-side">
+            <button type="button" data-bind="click:save" class="btn btn-success btn-simple">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/libraries/require.min.js" data-main="/javascript/ingredient.main.client.js"></script>
