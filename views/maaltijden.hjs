@@ -43,7 +43,7 @@
         <div>
           <h5>Datum</h5>
           <span data-bind="text:datum, visible:$parent.notEditMode"></span>
-          <input type="text" data-bind="value:datum, visible:$parent.editMode" />
+          <input type="text" id="datepicker" class="datepicker form-control" data-bind="value:datum, visible:$parent.editMode" />
         </div>
 
       	<div>

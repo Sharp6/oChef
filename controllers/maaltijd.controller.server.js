@@ -36,16 +36,24 @@ exports.createMaaltijd = function(req,res) {
 
 exports.updateMaaltijd = function(req,res) {
 	var maaltijdData = JSON.parse(req.body.maaltijd);
+	console.log("maaltijdData datum: ");
+	console.log(maaltijdData.datum);
 
 	req.maaltijd.datum = maaltijdData.datum;
 	req.maaltijd.nota = maaltijdData.nota;
 	req.maaltijd.gerecht = maaltijdData.gerecht;
 
+	console.log("req.maaltijd.datum: ");
+	console.log(req.maaltijd.datum);
+
 	maaltijdDA.updateMaaltijd(req)
 		.then(function(updatedMaaltijd) {
+			console.log("updatedMaaltijd:");
+			console.log(updatedMaaltijd);
 			res.json(updatedMaaltijd);
 		})
 		.catch(function(err) {
+			console.log(err);
 			res.status(500).send(err);
 		});
 }
@@ -64,6 +72,7 @@ exports.patchMaaltijd = function(req,res) {
 			res.json(updatedMaaltijd);
 		})
 		.catch(function(err) {
+			console.log(err);
 			res.status(500).send(err);
 		});
 

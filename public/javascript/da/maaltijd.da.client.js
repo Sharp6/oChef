@@ -1,4 +1,4 @@
-define(['jquery'], function($){
+define(['jquery', 'moment'], function($, moment){
 	"use strict";
 	
 	var loadMaaltijden = function() {
@@ -14,6 +14,11 @@ define(['jquery'], function($){
 
 	var updateMaaltijd = function(data) {
 		var dataJS = JSON.parse(data);
+
+		var datum = moment(dataJS.datum).valueOf();
+		dataJS.datum = datum;
+
+		console.log(dataJS.datum);
 
 		if(dataJS.gerecht) {
 			var gerechtId = dataJS.gerecht.dbId;
