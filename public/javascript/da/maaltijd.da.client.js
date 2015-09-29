@@ -15,10 +15,8 @@ define(['jquery', 'moment'], function($, moment){
 	var updateMaaltijd = function(data) {
 		var dataJS = JSON.parse(data);
 
-		var datum = moment(dataJS.datum).valueOf();
+		var datum = moment.utc(dataJS.datum, "YYYY-DD-MM").valueOf();
 		dataJS.datum = datum;
-
-		console.log(dataJS.datum);
 
 		if(dataJS.gerecht) {
 			var gerechtId = dataJS.gerecht.dbId;

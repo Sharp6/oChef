@@ -34,7 +34,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel" data-bind="text:naam, visible:$parent.notEditMode"></h4>
-        <input type="text" data-bind="value:naam, visible:$parent.editMode" />
+        <input type="text" class="form-control" data-bind="value:naam, visible:$parent.editMode" />
       </div>
 
       <div class="modal-body">
@@ -58,13 +58,11 @@
             <table class="table-condensed">
               <thead>
                 <th>Naam</th>
-                <th>dbID</th>
                 <th></th>
               </thead>
               <tbody data-bind="foreach:ingredienten">
                 <tr>
                   <td data-bind="text:naam"></td>
-                  <td data-bind="text:dbId"></td>
                   <td><button class="btn btn-xs" data-bind="click:$parent.removeIngredient">-</button></td>
                 </tr>
               </tbody>

@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var ingredientRoutes = require('./routes/ingredient.routes');
 var gerechtRoutes = require('./routes/gerecht.routes');
 var maaltijdRoutes = require('./routes/maaltijd.routes');
+var homeRoutes = require('./routes/home.routes');
 
 // Mongoose ODM
 var mongoose = require('mongoose');
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', ingredientRoutes);
 app.use('/', gerechtRoutes);
 app.use('/', maaltijdRoutes);
+app.use('/', homeRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -43,7 +43,7 @@
         <div>
           <h5>Datum</h5>
           <span data-bind="text:datum, visible:$parent.notEditMode"></span>
-          <input type="text" id="datepicker" class="datepicker form-control" data-bind="value:datum, visible:$parent.editMode" />
+          <input type="text" class="form-control" data-bind="datepicker: datum, datepickerOptions: { format: 'yyyy-dd-mm'}, visible:$parent.editMode" />
         </div>
 
       	<div>
@@ -55,9 +55,11 @@
         <div>
           <h5>Gerecht</h5>
           <span data-bind="text:gerecht() ? gerecht().naam : 'gerecht toevoegen', visible:$parent.notEditMode"></span>
-          <select data-bind="options:$parent.allGerechten, optionsText:'naam', value: $parent.selectedGerecht, optionsCaption: 'Kies gerecht', visible:$parent.editMode">
-          </select>
-          <button class="btn btn-sm" data-bind="click:$parent.confirmGerecht">confirm</button>
+          <div data-bind="visible:$parent.editMode">
+            <select data-bind="options:$parent.allGerechten, optionsText:'naam', value: $parent.selectedGerecht, optionsCaption: 'Kies gerecht'">
+            </select>
+            <button class="btn btn-sm" data-bind="click:$parent.confirmGerecht">confirm</button>
+          </div>
         </div>
 
         <div>

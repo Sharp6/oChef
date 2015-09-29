@@ -4,7 +4,7 @@ define(["knockout", "moment", "da/maaltijd.da.client", "models/gerecht.model.cli
     
     self.dbId = ko.observable(data._id || '');
     var myDatum = moment(data.datum);
-    self.datum = ko.observable(myDatum.format("yyyy-dd-mm") || '');
+    self.datum = ko.observable(myDatum.format("YYYY-DD-MM") || '');
     
     self.nota = ko.observable(data.nota || '');
     self.gerecht = ko.observable();
