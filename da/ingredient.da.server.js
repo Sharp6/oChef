@@ -1,26 +1,32 @@
-var mongoose = require('mongoose');
-var Ingredient = require('../models/ingredient.server.model');
-
-exports.updateIngredient = function(req) {
-	return new Promise(function(resolve,reject) {
-		req.ingredient.save(function(err) {
-			if(err) {
-				reject(err);
-			} else {
-				resolve(req.ingredient);
-			}
+var ingredientDA = function(Ingredient) {
+	var updateIngredient = function(req) {
+		return new Promise(function(resolve,reject) {
+			req.ingredient.save(function(err) {
+				if(err) {
+					reject(err);
+				} else {
+					resolve(req.ingredient);
+				}
+			});
 		});
-	});
+	}
+
+	var deleteIngredient = function(req) {
+		return new Promise(function(resolve,reject) {
+			req.ingredient.remove(function(err) {
+				if(err) {
+					reject(err);
+				} else {
+					resolve();
+				}
+			});
+		});
+	}
+
+	return {
+		updateIngredient: updateIngredient,
+		deleteIngredient: deleteIngredient
+	}	
 }
 
-exports.deleteIngredient = function(req) {
-	return new Promise(function(resolve,reject) {
-		req.ingredient.remove(function(err) {
-			if(err) {
-				reject(err);
-			} else {
-				resolve();
-			}
-		});
-	});
-}
+module.exports = ingredientDA;
