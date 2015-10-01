@@ -2,8 +2,6 @@ var ingredientRoutes = function(ingredientCtrl) {
 	var express = require('express');
 	var ingredientRouter = express.Router();
 
-	var ingredientCtrl = require('../controllers/ingredient.server.controller');
-
 	ingredientRouter.route('/api/ingredienten')
 		.get(function(req,res) {
 			return ingredientCtrl.getIngredienten(req,res);

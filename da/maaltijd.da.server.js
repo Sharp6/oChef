@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Maaltijd = require('../models/maaltijd.server.model');
+var Maaltijd = require('../models/maaltijd.model.server');
 
 exports.updateMaaltijd = function(req) {
 	console.log("Got here");

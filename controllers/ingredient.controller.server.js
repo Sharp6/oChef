@@ -97,7 +97,7 @@ var ingredientController = function(ingredientDA, Ingredient) {
 		createIngredient: createIngredient,
 		updateIngredient: updateIngredient,
 		patchIngredient: patchIngredient,
-		deleteIngredient, deleteIngredient,
+		deleteIngredient: deleteIngredient,
 		// Render
 		renderIngredienten: renderIngredienten
 	}

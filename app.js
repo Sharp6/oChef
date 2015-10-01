@@ -12,7 +12,7 @@ mongoose.connect('mongodb://philip:rabarber@ds037551.mongolab.com:37551/ochef');
 
 var Ingredient = require('./models/ingredient.model.server')(mongoose);
 var ingredientDA = require('./da/ingredient.da.server')(Ingredient);
-var ingredientCtrl = require('./da/ingredient.controller')(Ingredient, ingredientDA);
+var ingredientCtrl = require('./controllers/ingredient.controller.server')(Ingredient, ingredientDA);
 var ingredientRoutes = require('./routes/ingredient.routes')(ingredientCtrl);
 
 

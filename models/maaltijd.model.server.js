@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Gerecht = require('../models/gerecht.server.model.js');
+var Gerecht = require('../models/gerecht.model.server');
 
 var maaltijdSchema = new Schema({
 	datum: Date,

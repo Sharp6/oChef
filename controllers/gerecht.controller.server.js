@@ -1,5 +1,5 @@
-var Ingredient = require('../models/ingredient.server.model.js');
-var Gerecht = require('../models/gerecht.server.model.js');
+var Ingredient = require('../models/ingredient.model.server.js');
+var Gerecht = require('../models/gerecht.model.server.js');
 var gerechtDA = require('../da/gerecht.da.server.js');
 
 // Middleware controllers

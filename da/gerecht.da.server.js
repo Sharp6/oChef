@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Gerecht = require('../models/gerecht.server.model');
+var Gerecht = require('../models/gerecht.model.server');
 
 exports.updateGerecht = function(req) {
 	return new Promise(function(resolve,reject) {

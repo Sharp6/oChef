@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var Ingredient = require('../models/ingredient.server.model');
+var Ingredient = require('../models/ingredient.model.server');
 
 var gerechtSchema = new Schema({
 	naam: String,

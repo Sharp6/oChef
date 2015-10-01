@@ -1,5 +1,5 @@
-var Maaltijd = require('../models/maaltijd.server.model.js');
-var maaltijdDA = require('../da/maaltijd.da.server.js');
+var Maaltijd = require('../models/maaltijd.model.server');
+var maaltijdDA = require('../da/maaltijd.da.server');
 
 // Middleware controllers
 exports.fetchMaaltijd = function(req,res,next) {
