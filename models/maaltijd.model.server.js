@@ -1,14 +1,16 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var Gerecht = require('../models/gerecht.model.server');
+var Maaltijd = function(mongoose, Gerecht) {
+	var Schema = mongoose.Schema;
+	var maaltijdSchema = new Schema({
+		datum: Date,
+		nota: String,
+		gerecht: {
+			type: Schema.Types.ObjectId,
+			ref: 'Gerecht'
+		}
+	});
 
-var maaltijdSchema = new Schema({
-	datum: Date,
-	nota: String,
-	gerecht: {
-		type: Schema.Types.ObjectId,
-		ref: 'Gerecht'
-	}
-});
+	var model = mongoose.model('Maaltijd', maaltijdSchema);
+	return model;
+}
 
-module.exports = mongoose.model('Maaltijd', maaltijdSchema);
+module.exports = Maaltijd;
