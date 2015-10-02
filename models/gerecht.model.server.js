@@ -1,16 +1,18 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var Gerecht = function(mongoose, Ingredient) {
+	var Schema = mongoose.Schema;
 
-var Ingredient = require('../models/ingredient.model.server');
+	var gerechtSchema = new Schema({
+		naam: String,
+		nota: String, 
+		beschrijving: String,
+		ingredienten: [{
+			type: Schema.Types.ObjectId,
+			ref: 'Ingredient'
+		}]
+	});
 
-var gerechtSchema = new Schema({
-	naam: String,
-	nota: String, 
-	beschrijving: String,
-	ingredienten: [{
-		type: Schema.Types.ObjectId,
-		ref: 'Ingredient'
-	}]
-});
+	var model = mongoose.model('Gerecht', gerechtSchema);
+	return model;
+}
 
-module.exports = mongoose.model('Gerecht', gerechtSchema);
+module.exports = Gerecht;

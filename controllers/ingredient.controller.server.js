@@ -1,4 +1,4 @@
-var ingredientController = function(ingredientDA, Ingredient) {
+var ingredientController = function(Ingredient, ingredientDA) {
 	// Middleware controllers
 	var fetchIngredient = function(req,res,next) {
 		Ingredient.findById(req.params.id, function(err,ingredient) {
@@ -20,7 +20,6 @@ var ingredientController = function(ingredientDA, Ingredient) {
 
 	var getIngredienten = function(req,res) {
 		var query = Ingredient.find(req.query);
-
 		query.exec(function(err,results) {
 			res.json(results);
 		});
