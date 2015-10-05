@@ -20,9 +20,13 @@ var ingredientDA = require('./da/ingredient.da.server')(Ingredient);
 var ingredientCtrl = require('./controllers/ingredient.controller.server')(Ingredient, ingredientDA);
 var ingredientRoutes = require('./routes/ingredient.routes')(ingredientCtrl);
 
+var Gerecht = require('./models/gerecht.model.server')(mongoose, Ingredient);
+var gerechtDA = require('./da/gerecht.da.server')(Gerecht);
+var gerechtCtrl = require('./controllers/gerecht.controller.server')(Gerecht, gerechtDA);
+var gerechtRoutes = require('./routes/gerecht.routes')(gerechtCtrl);
 
-var gerechtRoutes = require('./routes/gerecht.routes');
 var maaltijdRoutes = require('./routes/maaltijd.routes');
+
 var homeRoutes = require('./routes/home.routes');
 
 var Maaltijd = require('./models/maaltijd.model.server')(mongoose);
