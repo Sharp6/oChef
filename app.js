@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-console.log('Hello!');
+var app = express();
 
 if(app.get('env') === "development") {
   require('dotenv').load();
@@ -37,7 +37,7 @@ var maaltijdDA = require('./da/maaltijd.da.server')(Maaltijd);
 var maaltijdCtrl = require('./controllers/maaltijd.controller.server')(Maaltijd, maaltijdDA);
 var maaltijdRoutes = require('./routes/maaltijd.routes')(maaltijdCtrl);
 
-var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
