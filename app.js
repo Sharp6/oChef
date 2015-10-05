@@ -5,6 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+if(app.get('env') === "development") {
+  require('dotenv').load();
+  console.log("Loading dotEnv.");
+}
+
 
 // Mongoose ODM
 var mongoose = require('mongoose');
