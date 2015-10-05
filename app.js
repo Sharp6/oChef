@@ -5,15 +5,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+console.log('Hello!');
+
 if(app.get('env') === "development") {
   require('dotenv').load();
   console.log("Loading dotEnv.");
 }
 
+console.log("environment", app.get('env'));
 
 // Mongoose ODM
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://philip:rabarber@ds037551.mongolab.com:37551/ochef');
+mongoose.connect(process.env.MONGO_CONNECT_STRING);
 
 var Ingredient = require('./models/ingredient.model.server')(mongoose);
 var ingredientDA = require('./da/ingredient.da.server')(Ingredient);
