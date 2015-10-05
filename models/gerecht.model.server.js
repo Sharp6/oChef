@@ -5,6 +5,7 @@ var Gerecht = function(mongoose, Ingredient) {
 		naam: String,
 		nota: String, 
 		beschrijving: String,
+		takeout: Boolean,
 		ingredienten: [{
 			type: Schema.Types.ObjectId,
 			ref: 'Ingredient'

@@ -4,7 +4,8 @@ define(["knockout", "da/ingredient.da.client", "models/ingredient.model.client"]
 		var self = this;
 
 		self.ingredienten = ko.observableArray();
-
+        self.allTags = ko.observableArray();
+        self.selectedTag = ko.observable();
 
 
 
@@ -64,6 +65,13 @@ define(["knockout", "da/ingredient.da.client", "models/ingredient.model.client"]
 
 
 
+
+        self.addSelectedTag = function() {
+            self.currentIngredient().addTag(self.selectedTag());
+        }
+
+
+
         self.removeCurrentIngredient = function() {
         	self.currentIngredient().remove()
         		.then(function() {
@@ -90,8 +98,19 @@ define(["knockout", "da/ingredient.da.client", "models/ingredient.model.client"]
 				});
 		}
 
+        self.loadTags = function() {
+            ingredientDA.loadTags()
+                .then(function(tags) {
+                    tags.forEach(function(tag) {
+                        console.log(tag);
+                        self.allTags.push(tag);
+                    });
+                });
+        }
+
 		self.init = function() {
 			self.loadIngredienten();
+            self.loadTags();
 		}
 	};
 
