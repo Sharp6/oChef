@@ -5,10 +5,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var app = express();
+
+if(app.get('env') === "development") {
+  require('dotenv').load();
+  console.log("Loading dotEnv.");
+}
+
+console.log("environment", app.get('env'));
 
 // Mongoose ODM
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://philip:rabarber@ds037551.mongolab.com:37551/ochef');
+mongoose.connect(process.env.MONGO_CONNECT_STRING);
 
 var Ingredient = require('./models/ingredient.model.server')(mongoose);
 var ingredientDA = require('./da/ingredient.da.server')(Ingredient);
@@ -27,7 +35,6 @@ var maaltijdRoutes = require('./routes/maaltijd.routes')(maaltijdCtrl);
 
 var homeRoutes = require('./routes/home.routes');
 
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
