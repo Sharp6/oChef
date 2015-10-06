@@ -1,12 +1,13 @@
 define(["knockout", "da/gerecht.da.client", "da/ingredient.da.client", "models/gerecht.model.client", "models/ingredient.model.client"], function(ko, gerechtDA, ingredientDA, Gerecht, Ingredient) {
 
 	var vm = function() {
-		var self = this;
+	var self = this;
 
-		self.gerechten = ko.observableArray();
+	self.gerechten = ko.observableArray();
         self.allIngredienten = ko.observableArray();
 
         self.selectedIngredient = ko.observable();
+
 
 		self.currentGerecht = ko.observable();
 		self.isCurrentGerecht = function(candidate) {

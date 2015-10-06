@@ -9,6 +9,13 @@ define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client"], f
     self.nota = ko.observable(data.nota || '');
     self.takeout = ko.observable(data.takeout || false);
     self.ingredienten = ko.observableArray();
+    self.fileData = ko.observable({
+      dataURL: ko.observable(),
+      file: ko.observable()
+    });
+    self.saveFile = function() {
+      gerechtDA.saveFile(self.fileData().file());
+    };
 
     if(data.ingredienten) {
       data.ingredienten.forEach(function(ingredientData) {

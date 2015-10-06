@@ -39,12 +39,25 @@ define(['jquery'], function($){
 			method : "DELETE",
 			data: {gerecht: data},
 		}).promise();
-	}
+	};
+
+	var saveFile = function(file) {
+		var fd = new FormData();
+		fd.append("imgFile", file);
+		return $.ajax({
+			url: "/uploads", 
+			method: "POST",
+			data: fd,
+			processData: false,
+			contentType: false
+		}).promise();
+	};	
 
 	return {
 		load : loadGerechten,
 		save: updateGerecht,
 		remove: removeGerecht,
-		create: createGerechten
+		create: createGerechten, 
+		saveFile: saveFile
 	};
 });

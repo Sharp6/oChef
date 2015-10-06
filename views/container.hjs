@@ -12,10 +12,9 @@
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/jumbotron-narrow.css">
     <link rel='stylesheet' href='/stylesheets/ct-paper.css' />
-		<link rel='stylesheet' href='/stylesheets/style.css' />
-		
+    <link rel='stylesheet' href='/stylesheets/knockout-file-bindings.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
     
-
   </head>
 
   <body>
