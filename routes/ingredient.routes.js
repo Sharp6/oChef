@@ -24,6 +24,11 @@ var ingredientRoutes = function(ingredientCtrl) {
 		.delete(function(req,res) {
 			return ingredientCtrl.deleteIngredient(req,res);
 		});
+
+	ingredientRouter.route('/api/ingredientenTags')
+		.get(function(req,res) {
+			return ingredientCtrl.getTags(req,res);
+		});
 		
 
 	ingredientRouter.route('/ingredienten')

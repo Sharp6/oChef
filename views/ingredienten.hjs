@@ -46,6 +46,30 @@
         </div>
 
         <div>
+          <h5>Tags</h5>
+          <div data-bind="foreach:tags, visible: $parent.notEditMode">
+            <span data-bind="text:$data"></span>
+          </div>
+          <div data-bind:"visible:$parent.editMode">
+            <select data-bind="options:$parent.allTags, optionsText: $data, value:$parent.selectedTag, optionsCation: 'Kies tag'">
+            </select>
+            <button class="btn btn-sm" data-bind="click:$parent.addSelectedTag">+</button>
+            <table class="table-condensed">
+              <thead>
+                <th>Tag</th>
+                <th></th>
+              </thead>
+              <tbody data-bind="foreach:tags">
+                <tr>
+                  <td data-bind="text:$data"></td>
+                  <td><button class="btn btn-xs" data-bind="click:$parent.removeTag">-</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
           <h5>In seizoen</h5>
           <div data-bind="foreach:maandenInSeizoen, visible: $parent.notEditMode">
           	<span data-bind="text:$parent.getMonth($data)" class="label label-info"></span>

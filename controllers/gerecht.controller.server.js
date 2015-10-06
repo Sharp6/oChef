@@ -37,6 +37,7 @@ var gerechtCtrl = function(Gerecht, gerechtDA) {
 
 		req.gerecht.naam = gerechtData.naam;
 		req.gerecht.nota = gerechtData.nota;
+		req.gerecht.takeout = gerechtData.takeout;
 		req.gerecht.beschrijving = gerechtData.beschrijving;
 		req.gerecht.ingredienten = gerechtData.ingredienten;
 

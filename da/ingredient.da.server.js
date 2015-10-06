@@ -1,5 +1,8 @@
 var ingredientDA = function(Ingredient) {
+
 	var updateIngredient = function(req) {
+		console.log(req.ingredient);
+		console.log(req.ingredient.tags);
 		return new Promise(function(resolve,reject) {
 			req.ingredient.save(function(err) {
 				if(err) {

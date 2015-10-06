@@ -25,6 +25,12 @@ var ingredientController = function(Ingredient, ingredientDA) {
 		});
 	};
 
+	var getTags = function(req,res) {
+		Ingredient.distinct('tags', function(error, tags) {
+			res.json(tags);
+		});
+	}
+
 	var createIngredient = function(req,res) {
 		var ingredient = new Ingredient();
 		ingredient.save();
@@ -34,10 +40,13 @@ var ingredientController = function(Ingredient, ingredientDA) {
 	var updateIngredient = function(req,res) {
 		var ingredientData = JSON.parse(req.body.ingredient);
 
+		console.log("In controller", ingredientData.tags);
+
 		req.ingredient.naam = ingredientData.naam;
 		req.ingredient.nota = ingredientData.nota;
 		req.ingredient.beschrijving = ingredientData.beschrijving;
 		req.ingredient.maandenInSeizoen = ingredientData.maandenInSeizoen;
+		req.ingredient.tags = ingredientData.tags;
 
 		ingredientDA.updateIngredient(req)
 			.then(function(updatedIngredient) {
@@ -97,6 +106,7 @@ var ingredientController = function(Ingredient, ingredientDA) {
 		updateIngredient: updateIngredient,
 		patchIngredient: patchIngredient,
 		deleteIngredient: deleteIngredient,
+		getTags: getTags,
 		// Render
 		renderIngredienten: renderIngredienten
 	}

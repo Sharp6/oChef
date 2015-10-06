@@ -5,7 +5,8 @@ var Ingredient = function(mongoose) {
 		naam: String,
 		nota: String, 
 		beschrijving: String,
-		maandenInSeizoen: [Number]
+		maandenInSeizoen: [Number],
+		tags: [String]
 	});
 
 	var model = mongoose.model('Ingredient', ingredientSchema);
