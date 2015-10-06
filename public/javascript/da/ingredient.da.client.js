@@ -14,6 +14,7 @@ define(['jquery'], function($){
 
 	var updateIngredient = function(data) {
 		var dataJS = JSON.parse(data);
+		console.log(data);
 		return $.ajax({
 			url: "/api/ingredienten/" + dataJS.dbId,
 			data: {ingredient: data},
@@ -30,10 +31,15 @@ define(['jquery'], function($){
 		}).promise();
 	}
 
+	var loadTags = function() {
+		return $.getJSON("/api/ingredientenTags").promise();
+	}
+
 	return {
 		load : loadIngredienten,
 		save: updateIngredient,
 		remove: removeIngredient,
-		create: createIngredient
+		create: createIngredient,
+		loadTags: loadTags
 	};
 });

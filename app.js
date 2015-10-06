@@ -28,15 +28,12 @@ var gerechtDA = require('./da/gerecht.da.server')(Gerecht);
 var gerechtCtrl = require('./controllers/gerecht.controller.server')(Gerecht, gerechtDA);
 var gerechtRoutes = require('./routes/gerecht.routes')(gerechtCtrl);
 
-var maaltijdRoutes = require('./routes/maaltijd.routes');
-
-var homeRoutes = require('./routes/home.routes');
-
 var Maaltijd = require('./models/maaltijd.model.server')(mongoose);
 var maaltijdDA = require('./da/maaltijd.da.server')(Maaltijd);
 var maaltijdCtrl = require('./controllers/maaltijd.controller.server')(Maaltijd, maaltijdDA);
 var maaltijdRoutes = require('./routes/maaltijd.routes')(maaltijdCtrl);
 
+var homeRoutes = require('./routes/home.routes');
 
 
 // view engine setup

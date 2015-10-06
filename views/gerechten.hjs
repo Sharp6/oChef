@@ -46,6 +46,11 @@
         </div>
 
         <div>
+          <h5>Takeout</h5>
+          <div><input type="checkbox" data-bind="checked:takeout" /> Take-out</div>
+        </div>
+
+        <div>
           <h5>Ingredienten</h5>
           <div data-bind="foreach:ingredienten, visible: $parent.notEditMode">
           	<span data-bind="text:naam" class="label label-info"></span>
