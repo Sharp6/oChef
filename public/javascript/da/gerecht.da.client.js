@@ -41,11 +41,11 @@ define(['jquery'], function($){
 		}).promise();
 	};
 
-	var saveFile = function(file) {
+	var saveFile = function(file, gerechtId) {
 		var fd = new FormData();
 		fd.append("imgFile", file);
 		return $.ajax({
-			url: "/uploads", 
+			url: "/api/gerechten/" + gerechtId + "/img", 
 			method: "POST",
 			data: fd,
 			processData: false,

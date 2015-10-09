@@ -27,6 +27,13 @@ var maaltijdRoutes = function(maaltijdCtrl) {
 		});
 		
 
+	maaltijdRouter.use('/maaltijden', function(req,res,next) {
+		if(!req.user) {
+			res.redirect('/login');
+		}
+		next();
+	});
+
 	maaltijdRouter.route('/maaltijden')
 		.get(function(req,res) {
 			return maaltijdCtrl.renderMaaltijden(req,res);

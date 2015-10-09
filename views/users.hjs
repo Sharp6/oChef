@@ -1,0 +1,3 @@
+<p><img src="{{user.image}}" /></p>
+<p>Hello, {{user.displayName}}. You are logged in with the role of {{user.role}}.</p>
+<p>Here you can <a href="/logout">log out</a>.</p>

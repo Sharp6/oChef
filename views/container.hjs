@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/jumbotron-narrow.css">
+    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
     <link rel='stylesheet' href='/stylesheets/ct-paper.css' />
     <link rel='stylesheet' href='/stylesheets/knockout-file-bindings.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -28,7 +29,8 @@
             <li id="maaltijdenMenu" role="presentation"><a href="/maaltijden">Maaltijden</a></li>
           </ul>
         </nav>
-        <h3 class="text-muted">oChef</h3>
+        <h3 class="text-muted"><a href="/">oChef</a></h3>
+        <a href="/users"><i class="fa fa-user"></i></a>
       </div>
     </div>
 

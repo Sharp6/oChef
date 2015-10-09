@@ -1,0 +1,5 @@
+I'm sure you'd like to login.
+
+<ul>
+ <li><a href="/auth/google" class="googleplus"><i class="fa fa-google-plus"></i></a></li>
+</ul>

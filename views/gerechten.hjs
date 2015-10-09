@@ -33,11 +33,14 @@
     <div class="modal-content" data-bind="with:currentGerecht">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel" data-bind="text:naam, visible:$parent.notEditMode"></h4>
+        <h4 class="modal-title" id="myModalLabel" data-bind="text:naam, visible:$parent.notEditMode">
+          </h4><span data-bind="visible:takeout" class="label label-info">takeout</span>
         <input type="text" class="form-control" data-bind="value:naam, visible:$parent.editMode" />
       </div>
 
       <div class="modal-body">
+
+        <img data-bind="attr: {src:imgUrl}" class="gerechtImg" />
 
       	<div>
           <h5>Beschrijving</h5>
@@ -45,7 +48,7 @@
           <textarea class="form-control" placeholder="Here can be your nice text" rows="3" data-bind="value:beschrijving, visible:$parent.editMode"></textarea>
         </div>
 
-        <div>
+        <div data-bind="visible:$parent.editMode">
           <h5>Takeout</h5>
           <div><input type="checkbox" data-bind="checked:takeout" /> Take-out</div>
         </div>
@@ -76,38 +79,44 @@
 
         </div>
 
-	<div class="form-group" data-bind="visible:$parent.editMode">
-		<div data-bind="fileDrag: fileData">
-			<div class="image-upload-preview">
-				<img data-bind="attr: { src: fileData().dataURL }, visible: fileData().dataURL">
-			</div>
-			<div class="image-upload-input">
-				<input type="file" id="imgInputFile" data-bind="fileInput:fileData, , customFileInput: {}" />
-			</div>
-		</div>		
-		<button class="btn btn-primary" data-bind="click:saveFile">upload Img</button>
-	</div>
-
-        <div>
-          <h5>Admin-acties</h5>
-  				<p>
-  					<button class="btn btn-success btn-xs" data-bind="css: $parent.editModeClass, click:$parent.switchEditMode">Edit mode</button>
-  					<button class="btn btn-danger btn-xs" data-bind="click:$parent.removeCurrentGerecht">Delete</button>
-  				</p>
-        </div>
+        <div class="form-group" data-bind="visible:$parent.editMode">
+          <div data-bind="fileDrag: fileData">
+           <div class="image-upload-preview">
+            <img data-bind="attr: { src: fileData().dataURL }, visible: fileData().dataURL">
+          </div>
+          <div class="image-upload-input">
+            <input type="file" id="imgInputFile" data-bind="fileInput:fileData, , customFileInput: {}" />
+          </div>
+        </div>		
+        <button class="btn btn-primary" data-bind="click:saveFile">upload Img</button>
       </div>
 
-      <div class="modal-footer">
-        <div class="left-side">
-            <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Sluit</button>
-        </div>
-        <div class="divider"></div>
-        <div class="right-side">
-            <button type="button" data-bind="click:save" class="btn btn-success btn-simple">Save</button>
-        </div>
+      <div>
+        <h3>Rating</h3>
+        <p data-bind="starRating:rating"></p>
       </div>
+
+      <div>
+        <h5>Admin-acties</h5>
+        <p>
+         <button class="btn btn-success btn-xs" data-bind="css: $parent.editModeClass, click:$parent.switchEditMode">Edit mode</button>
+         <button class="btn btn-danger btn-xs" data-bind="click:$parent.removeCurrentGerecht">Delete</button>
+       </p>
+     </div>
+
+   </div>
+
+   <div class="modal-footer">
+    <div class="left-side">
+      <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Sluit</button>
+    </div>
+    <div class="divider"></div>
+    <div class="right-side">
+      <button type="button" data-bind="click:save" class="btn btn-success btn-simple">Save</button>
     </div>
   </div>
+</div>
+</div>
 </div>
 
 <script src="/libraries/require.min.js" data-main="/javascript/gerecht.main.client.js"></script>

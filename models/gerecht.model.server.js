@@ -6,6 +6,7 @@ var Gerecht = function(mongoose, Ingredient) {
 		nota: String, 
 		beschrijving: String,
 		takeout: Boolean,
+		image: Boolean,
 		ingredienten: [{
 			type: Schema.Types.ObjectId,
 			ref: 'Ingredient'
