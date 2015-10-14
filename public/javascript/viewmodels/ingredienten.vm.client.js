@@ -4,6 +4,19 @@ define(["knockout", "da/ingredient.da.client", "models/ingredient.model.client"]
 		var self = this;
 
 		self.ingredienten = ko.observableArray();
+
+        self.filterText = ko.observable('');
+        self.filteredIngredienten = ko.computed(function() {
+          var filter = self.filterText().toLowerCase();
+          if(!filter) {
+            return self.ingredienten();
+          } else {
+            return ko.utils.arrayFilter(self.ingredienten(), function(ingredient) {
+              return ingredient.naam().toLowerCase().indexOf(filter) !== -1;
+            });
+          }
+        });
+
         self.allTags = ko.observableArray();
         self.selectedTag = ko.observable();
 
@@ -23,13 +36,13 @@ define(["knockout", "da/ingredient.da.client", "models/ingredient.model.client"]
 		});
 		self.ingredientsPerPage = 10;
 		self.totalPages = ko.computed(function(){
-			var div = Math.floor(self.ingredienten().length / self.ingredientsPerPage);
-			div += self.ingredienten().length % self.ingredientsPerPage > 0 ? 1 : 0;
+			var div = Math.floor(self.filteredIngredienten().length / self.ingredientsPerPage);
+			div += self.filteredIngredienten().length % self.ingredientsPerPage > 0 ? 1 : 0;
 			return div - 1;
 		});
 		self.ingredientenOpPagina = ko.computed(function() {
 			var first = self.pageNumber() * self.ingredientsPerPage;
-			return self.ingredienten.slice(first, first + self.ingredientsPerPage);
+			return self.filteredIngredienten().slice(first, first + self.ingredientsPerPage);
 		});
 		self.hasPrevious = ko.computed(function() {
             return self.pageNumber() !== 0;

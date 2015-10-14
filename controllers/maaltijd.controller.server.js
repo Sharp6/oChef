@@ -19,7 +19,7 @@ var maaltijdController = function(Maaltijd, maaltijdDA) {
 	}
 
 	var getMaaltijden = function(req,res) {
-		var query = Maaltijd.find(req.query).populate('gerecht');
+		var query = Maaltijd.find(req.query).populate('gerecht').sort('-datum');
 
 		query.exec(function(err,results) {
 			res.json(results);

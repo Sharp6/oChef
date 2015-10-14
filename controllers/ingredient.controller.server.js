@@ -19,7 +19,7 @@ var ingredientController = function(Ingredient, ingredientDA) {
 	}
 
 	var getIngredienten = function(req,res) {
-		var query = Ingredient.find(req.query);
+		var query = Ingredient.find(req.query).sort('naam');
 		query.exec(function(err,results) {
 			res.json(results);
 		});

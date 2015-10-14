@@ -60,7 +60,8 @@
           </div>
 
           <div data-bind="visible:$parent.editMode">
-            <select data-bind="options:$parent.allIngredienten, optionsText:'naam', value:$parent.selectedIngredient, optionsCaption: 'Kies ingredient'">
+            <input type="text" data-bind="value:$parent.filterText, valueUpdate:'afterkeydown'" />
+            <select data-bind="options:$parent.filteredIngredienten, optionsText:'naam', value:$parent.selectedIngredient, optionsCaption: 'Kies ingredient'">
             </select>
             <button class="btn btn-sm" data-bind="click:$parent.addSelectedIngredient">+</button>
             <table class="table-condensed">

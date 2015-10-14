@@ -1,3 +1,5 @@
+<input type="text" data-bind="value:filterText, valueUpdate:'afterkeydown'" />
+
 <table class="table">
 
 	<thead>
@@ -50,7 +52,7 @@
           <div data-bind="foreach:tags, visible: $parent.notEditMode">
             <span data-bind="text:$data"></span>
           </div>
-          <div data-bind:"visible:$parent.editMode">
+          <div data-bind="visible:$parent.editMode">
             <select data-bind="options:$parent.allTags, optionsText: $data, value:$parent.selectedTag, optionsCation: 'Kies tag'">
             </select>
             <button class="btn btn-sm" data-bind="click:$parent.addSelectedTag">+</button>

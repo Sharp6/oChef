@@ -1,0 +1,30 @@
+.starRating span::before {
+	content: "\f006";
+	padding-right: 5px;
+	color: #777777;
+}
+
+.starRating span {
+	font-family: FontAwesome;
+	font-weight: normal;
+	font-style: normal;
+	display: inline-block;
+}
+
+
+.starRating span.chosen::before {
+	content: "\f005";
+	color: #d3bf6a;
+	padding-right: 5px;
+}
+
+.starRating span.hoverChosen::before {
+	content: "\f005";
+	color: #e3cf7a;
+	padding-right: 5px;
+}
+
+.card-container {
+	width: 300px;
+	margin: 10px;
+}

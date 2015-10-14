@@ -21,10 +21,18 @@ var mainController = function() {
 		});
 	}
 
+	var renderWizard = function(req,res) {
+		res.render('wizardContainer', 
+		{
+			partials: { body: 'wizard' }
+		});
+	}
+
 	return {
 		renderUsers: renderUsers,
 		renderHome: renderHome,
-		renderLogin: renderLogin
+		renderLogin: renderLogin,
+		renderWizard: renderWizard
 	}
 }
 

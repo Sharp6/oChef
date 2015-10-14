@@ -21,9 +21,13 @@ var gerechtCtrl = function(Gerecht, gerechtDA, Busboy) {
 	}
 
 	var getGerechten = function(req,res) {
-		var query = Gerecht.find(req.query).populate('ingredienten');
+		var query = Gerecht.find(req.query).populate('ingredienten').sort('naam');
 
 		query.exec(function(err,results) {
+			results.forEach(function(gerecht) {
+				gerecht.userId = req.user ? req.user._id : null;
+			});
+
 			res.json(results);
 		});
 	};
@@ -42,6 +46,21 @@ var gerechtCtrl = function(Gerecht, gerechtDA, Busboy) {
 		req.gerecht.takeout = gerechtData.takeout;
 		req.gerecht.beschrijving = gerechtData.beschrijving;
 		req.gerecht.ingredienten = gerechtData.ingredienten;
+
+		var index = req.gerecht.ratings.findIndex(function(element, index, array) {
+			return element.userId == req.user._id;
+		});
+
+		if(index === -1) {
+			var rating = {};
+			rating.waarde = gerechtData.rating;
+			rating.userId = req.user._id;
+			
+			req.gerecht.ratings.push(rating);
+			
+		} else {
+			req.gerecht.ratings[index].waarde = gerechtData.rating;
+		}
 
 		gerechtDA.updateGerecht(req.gerecht)
 			.then(function(updatedGerecht) {
