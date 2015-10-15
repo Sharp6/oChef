@@ -4,8 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-//var multer = require('multer');
-//var upload = multer({dest:'./public/uploads'});
+
+var passport = require('passport');
+var session = require('express-session');
+
 var Busboy = require('busboy');
 var Grid = require("gridfs-stream");
 
@@ -25,14 +27,16 @@ var mongodb = mongoose.connection;
 // GRID FS
 var gfs = Grid(mongodb.db, mongoose.mongo);
 
+var authRoutes = require('./routes/auth.routes');
+
 var Ingredient = require('./models/ingredient.model.server')(mongoose);
 var ingredientDA = require('./da/ingredient.da.server')(Ingredient);
 var ingredientCtrl = require('./controllers/ingredient.controller.server')(Ingredient, ingredientDA);
 var ingredientRoutes = require('./routes/ingredient.routes')(ingredientCtrl);
 
 var Gerecht = require('./models/gerecht.model.server')(mongoose, Ingredient);
-var gerechtDA = require('./da/gerecht.da.server')(Gerecht);
-var gerechtCtrl = require('./controllers/gerecht.controller.server')(Gerecht, gerechtDA);
+var gerechtDA = require('./da/gerecht.da.server')(Gerecht, gfs);
+var gerechtCtrl = require('./controllers/gerecht.controller.server')(Gerecht, gerechtDA, Busboy);
 var gerechtRoutes = require('./routes/gerecht.routes')(gerechtCtrl);
 
 var Maaltijd = require('./models/maaltijd.model.server')(mongoose);
@@ -40,8 +44,10 @@ var maaltijdDA = require('./da/maaltijd.da.server')(Maaltijd);
 var maaltijdCtrl = require('./controllers/maaltijd.controller.server')(Maaltijd, maaltijdDA);
 var maaltijdRoutes = require('./routes/maaltijd.routes')(maaltijdCtrl);
 
-var homeRoutes = require('./routes/home.routes');
+var mainCtrl = require('./controllers/main.controller.server')();
 
+var homeRoutes = require('./routes/home.routes')(mainCtrl);
+var userRoutes = require('./routes/users.routes')(mainCtrl);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -55,77 +61,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var User = require('./models/user.model.server')(mongoose);
+app.use(session({secret: 'oChefSession'}));
+require('./config/passport')(app, User);
+
+
+
+
+app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
 app.use('/', ingredientRoutes);
 app.use('/', gerechtRoutes);
 app.use('/', maaltijdRoutes);
 app.use('/', homeRoutes);
 
 
-app.post('/uploads', function(req,res) {
-  console.log("In the uploads route");
-
-  var gfsStream;
-  var busboy = new Busboy({headers: req.headers});
-
-  busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-    console.log("Got file", filename);
-
-    gfsStream = gfs.createWriteStream({
-      filename: filename,
-      mode: "w",
-      chunkSize: 1024*256,
-      content_type: mimetype,
-      root: "fs",
-      metadata: {}
-    });
-
-    file.on('data', function(data) {
-      gfsStream.write(data);
-    });
-
-    file.on('end', function() {
-      gfsStream.end();
-    });
-
-    gfsStream.on('close', function(file) {
-      console.log("GFS stream is closed");
-    });
-  }); 
-
-  busboy.on('error', function(err) {
-    console.log(err);
-    res.send(500, 'ERROR', err);
-  });
-
-  busboy.on('finish', function() {
-    console.log("Busboy finish");
-    res.send(200);
-  });
-  req.pipe(busboy);
-});
-
-app.get('/viewImg', function(req,res) {
-  var readStream = gfs.createReadStream({
-    _id : "5613dee6391f995e26106801"
-  });
-
-  readStream.on('error', function(err) {
-    res.send('404', 'Not found');
-    return;
-  });
-
-  res.setHeader('Content-Type', 'image/jpeg');
-  readStream.pipe(res); 
-});
-
-/*
-app.post('/uploads', upload.single('imgFile'), function(req,res,next) {
-	console.log("In the uploads route");
-	console.log("ContentType", req.get('content-type'));
-	console.log(req);
-	res.json("ok");
-});
-*/
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

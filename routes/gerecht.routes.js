@@ -26,6 +26,21 @@ var gerechtRoutes = function(gerechtCtrl) {
 		});
 		
 
+	gerechtRouter.route('/api/gerechten/:id/img')
+		.get(function(req,res) {
+			return gerechtCtrl.downloadImg(req,res);
+		})
+		.post(function(req,res) {
+			return gerechtCtrl.uploadImage(req,res);
+		});
+
+	gerechtRouter.use('/gerechten', function(req,res,next) {
+		if(!req.user) {
+			res.redirect('/login');
+		}
+		next();
+	});
+
 	gerechtRouter.route('/gerechten')
 		.get(function(req,res) {
 			return gerechtCtrl.renderGerechten(req,res);

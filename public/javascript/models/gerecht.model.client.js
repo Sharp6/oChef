@@ -7,14 +7,23 @@ define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client"], f
     self.naam = ko.observable(data.naam || '');
     self.beschrijving = ko.observable(data.beschrijving || '');
     self.nota = ko.observable(data.nota || '');
+    self.rating = ko.observable(data.userRating || 0);
     self.takeout = ko.observable(data.takeout || false);
     self.ingredienten = ko.observableArray();
     self.fileData = ko.observable({
       dataURL: ko.observable(),
       file: ko.observable()
     });
+    self.imgBoolean = ko.observable(data.image || false);
+    self.imgUrl = ko.computed(function() {
+      if(self.imgBoolean()) {
+        return "/api/gerechten/" + self.dbId() + "/img";  
+      } else {
+        return "/images/chef.png";
+      }
+    });
     self.saveFile = function() {
-      gerechtDA.saveFile(self.fileData().file());
+      gerechtDA.saveFile(self.fileData().file(), self.dbId());
     };
 
     if(data.ingredienten) {

@@ -31,6 +31,13 @@ var ingredientRoutes = function(ingredientCtrl) {
 		});
 		
 
+	ingredientRouter.use('/ingredienten', function(req,res,next) {
+		if(!req.user) {
+			res.redirect('/login');
+		}
+		next();
+	});
+
 	ingredientRouter.route('/ingredienten')
 		.get(function(req,res) {
 			return ingredientCtrl.renderIngredienten(req,res);

@@ -1,11 +1,23 @@
-var express = require('express');
-var router = express.Router();
+var mainRoutes = function(mainCtrl) {
+	var express = require('express');
+	var mainRouter = express.Router();
 
-var mainCtrl = require('../controllers/main.controller.server');
+	mainRouter.route('/admin')
+		.get(mainCtrl.renderHome);
 
-router.route('/')
-	.get(function(req,res) {
-		return mainCtrl.renderHome(req,res);
-	});
+	mainRouter.route('/')
+		.get(mainCtrl.renderWizard);
 
-module.exports = router;
+	mainRouter.route('/login')
+		.get(mainCtrl.renderLogin);
+
+	mainRouter.route('/logout')
+		.get(function(req,res) {
+			req.logout();
+			res.redirect('/');
+		});
+
+	return mainRouter;
+}
+
+module.exports = mainRoutes;
