@@ -36,11 +36,20 @@
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
+
+          <div id="userInfo" class="pull-right navbar-brand">
+            <div data-bind="if:user">
+              <span data-bind="text:username"></span>
+            </div>
+            <div data-bind="ifnot:user">
+              <a href="/auth/google">Log in my friend!</a>
+            </div>
+          </div>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container" id="mainContent">
 
       {{>body}}
     </div><!-- /.container -->

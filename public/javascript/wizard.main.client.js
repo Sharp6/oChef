@@ -35,7 +35,8 @@ require(["jquery", "bootstrap", "knockout", "knockoutFileBindings", "koStarRatin
 		wVM.user(newValue);
 	});
 	
-	ko.applyBindings(wVM);
+	ko.applyBindings(wVM, document.getElementById('mainContent'));
+	ko.applyBindings(uVM, document.getElementById('userInfo'));
 
 	/*
 	var imgLoad;

@@ -12,6 +12,7 @@ var Gerecht = function(mongoose, Ingredient) {
 		bron: String,
 		referentie: String,
 		userRating: Number,
+		inDiepvries: Boolean,
 		ingredienten: [{
 			type: Schema.Types.ObjectId,
 			ref: 'Ingredient'

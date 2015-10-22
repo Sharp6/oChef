@@ -14,6 +14,7 @@ define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client"], f
     self.ratings = ko.observableArray();
     self.takeout = ko.observable(data.takeout || false);
     self.ingredienten = ko.observableArray();
+    self.inDiepvries = ko.observable(data.inDiepvries || false);
     self.fileData = ko.observable({
       dataURL: ko.observable(),
       file: ko.observable()

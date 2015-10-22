@@ -5,6 +5,7 @@ var Ingredient = function(mongoose) {
 		naam: String,
 		nota: String, 
 		beschrijving: String,
+		inDiepvries: Boolean,
 		maandenInSeizoen: [Number],
 		tags: [String]
 	});

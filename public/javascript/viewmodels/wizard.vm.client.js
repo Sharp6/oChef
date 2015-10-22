@@ -18,10 +18,17 @@ define(["knockout",
         return self.gerechten();
       } else {
         return ko.utils.arrayFilter(self.gerechten(), function(gerecht) {
-          return gerecht.naam().toLowerCase().indexOf(filter) !== -1;
+          return (gerecht.naam().toLowerCase().indexOf(filter) !== -1 || checkIngredienten(gerecht, filter));
         });
       }
     });
+
+    function checkIngredienten(gerecht, filter) {
+      var results = ko.utils.arrayFilter(gerecht.ingredienten(), function(ingredient) {
+        return ingredient.naam().toLowerCase().indexOf(filter) !== -1;
+      });
+      return results.length > 0;
+    }
 
     self.loadGerechten = function() {
       gerechtDA.load()

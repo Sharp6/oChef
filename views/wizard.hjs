@@ -1,9 +1,8 @@
-
-<div class="input-group input-group-lg">
-  <input type="text" class="form-control" placeholder="Search" data-bind="value:filterText, valueUpdate:'afterkeydown'" />
+<div class="input-group input-group-lg searchContainer">
+  <input type="text" class="form-control searchBox" placeholder="Search" data-bind="value:filterText, valueUpdate:'afterkeydown'" />
 </div>
 
-<div class="cards-container" data-bind="masonry: {data: filteredGerechten, masonryOptions: {itemClass: 'card-container'}}">
+<div class="cards-container" data-bind="masonry: {data: filteredGerechten, masonryOptions: {itemClass: 'card-container', isFitWidth: true}}">
 	<div class="card-container">
 		<div class="card">
 			<div class="front">

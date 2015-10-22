@@ -19,16 +19,12 @@ define(["knockout", "da/ingredient.da.client", "models/ingredient.model.client"]
 
         self.allTags = ko.observableArray();
         self.selectedTag = ko.observable();
-
-
-
+        
 		self.currentIngredient = ko.observable();
 		self.isCurrentIngredient = function(candidate) {
 			var testIngredient = self.currentIngredient() || new Ingredient({dbId:'bullshit'});
 			return candidate.dbId() === testIngredient.dbId();
 		}
-
-
 
 		self.pageNumber = ko.observable(0);
 		self.displayedPageNumber = ko.computed(function() {
@@ -76,14 +72,9 @@ define(["knockout", "da/ingredient.da.client", "models/ingredient.model.client"]
         	return self.editMode() ? "btn-fill" : "";
         });
 
-
-
-
         self.addSelectedTag = function() {
             self.currentIngredient().addTag(self.selectedTag());
         }
-
-
 
         self.removeCurrentIngredient = function() {
         	self.currentIngredient().remove()
@@ -115,7 +106,6 @@ define(["knockout", "da/ingredient.da.client", "models/ingredient.model.client"]
             ingredientDA.loadTags()
                 .then(function(tags) {
                     tags.forEach(function(tag) {
-                        console.log(tag);
                         self.allTags.push(tag);
                     });
                 });

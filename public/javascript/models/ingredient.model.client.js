@@ -6,6 +6,7 @@ define(["knockout", "da/ingredient.da.client"], function(ko, ingredientDA) {
     self.naam = ko.observable(data.naam || '');
     self.beschrijving = ko.observable(data.beschrijving || '');
     self.nota = ko.observable(data.nota || '');
+    self.inDiepvries = ko.observable(data.inDiepvries || false);
     self.maandenInSeizoen = ko.observableArray(data.maandenInSeizoen);
     self.tags = ko.observableArray(data.tags);
   

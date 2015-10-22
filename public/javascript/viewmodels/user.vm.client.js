@@ -6,6 +6,13 @@ define(["knockout", "da/user.da.client"],
 
     self.user = ko.observable();
 
+    self.username = ko.computed(function() {
+      if(self.user()) {
+        return self.user().displayName;  
+      }
+      
+    });
+
     self.loadUser = function() {
       userDA.loadUser()
         .then(function(user) {
