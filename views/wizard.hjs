@@ -1,5 +1,9 @@
 
-<div class="cards-container" data-bind="foreach:gerechten">
+<div class="input-group input-group-lg">
+  <input type="text" class="form-control" placeholder="Search" data-bind="value:filterText, valueUpdate:'afterkeydown'" />
+</div>
+
+<div class="cards-container" data-bind="masonry: {data: filteredGerechten, masonryOptions: {itemClass: 'card-container'}}">
 	<div class="card-container">
 		<div class="card">
 			<div class="front">
@@ -16,14 +20,18 @@
 						
 					</div>
 					<div class="footer">
-						<div class="rating">
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
+						<div class="starRating">
+							<span data-bind="visible: averageRating() > 0" class="hoverChosen"></span>
+							<span data-bind="visible: averageRating() > 1" class="hoverChosen"></span>
+							<span data-bind="visible: averageRating() > 2" class="hoverChosen"></span>
+							<span data-bind="visible: averageRating() > 3" class="hoverChosen"></span>
+							<span data-bind="visible: averageRating() > 4" class="hoverChosen"></span>
 						</div>
 					</div>
 				</div>
 			</div> <!-- end front panel -->
+
+
 			<div class="back">
 				<div class="header">
 					<h5 class="motto" data-bind="text:naam"></h5>
@@ -39,10 +47,8 @@
 					</div>
 				</div>
 				<div class="footer">
-					<div class="social-links text-center">
-						<a href="http://creative-tim.com" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
-						<a href="http://creative-tim.com" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
-						<a href="http://creative-tim.com" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+					<div class="text-center">
+						<span data-bind="starRating:rating"></span>
 					</div>
 				</div>
 			</div> <!-- end back panel -->

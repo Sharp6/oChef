@@ -7,7 +7,8 @@ require.config({
 		"knockoutFileBindings" : { "deps": ['knockout', 'jquery'] },
 		"koStarRating" : { "deps" : ['knockout', 'jquery']},
 		"masonry" : { "deps" : ['jquery']},
-		"imagesloaded" : { "deps": ['jquery']}
+		"imagesloaded" : { "deps": ['jquery']},
+		"bindingMasonry" : { "deps" : ['masonry'] }
 	},
 	paths: {
 		jquery: '/libraries/jquery-2.1.3.min',
@@ -17,16 +18,20 @@ require.config({
 		moment: '/libraries/moment-with-locales.min',
 		koStarRating: '/libraries/ko-starRating',
 		masonry: '/libraries/masonry.pkgd.min',
-		imagesloaded: '/libraries/imagesloaded.pkgd'
+		imagesloaded: '/libraries/imagesloaded.pkgd',
+		bindingMasonry: '/libraries/ko-binding-masonry'
 	}
 });
 
-require(["jquery", "bootstrap", "knockout", "knockoutFileBindings", "koStarRating", "masonry", "imagesloaded", "viewmodels/wizard.vm.client"], 
-	function($, bootstrap, ko, koFileBindings, koStarRating, Masonry, imagesLoaded, WizardVM) {
+require(["jquery", "bootstrap", "knockout", "knockoutFileBindings", "koStarRating", "bindingMasonry", "masonry", "imagesloaded", "viewmodels/wizard.vm.client"], 
+	function($, bootstrap, ko, koFileBindings, koStarRating, bindingMasonry, Masonry, imagesLoaded, WizardVM) {
 	var wVM = new WizardVM();
 	wVM.init();
 	ko.applyBindings(wVM);
 
+
+
+	/*
 	var imgLoad;
 	var msnry;
 	var masonryElement = "div.cards-container";
@@ -39,4 +44,5 @@ require(["jquery", "bootstrap", "knockout", "knockoutFileBindings", "koStarRatin
 			});
 		});
 	});
+	*/
 });
