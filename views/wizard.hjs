@@ -1,7 +1,7 @@
 
 <input type="text" data-bind="value:filterText, valueUpdate:'afterkeydown'" />
 
-<div class="cards-container" data-bind="foreach:gerechten">
+<div class="cards-container" data-bind="foreach:filteredGerechten">
 	<div class="card-container">
 		<div class="card">
 			<div class="front">
