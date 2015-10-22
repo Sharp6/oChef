@@ -107,6 +107,9 @@
                 $container.masonry('appended', newElements);
                 $container.masonry('layout');
                 newNodes.splice(0, newNodes.length); // reset back to empty*/
+                msnry.appended(newNodes);
+                msnry.layout();
+                newNodes.splice(0, newNodes.length); // reset back to empty*/
             }
 
             // Update gets called upon initial rendering as well
