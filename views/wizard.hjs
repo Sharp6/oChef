@@ -1,5 +1,7 @@
 
-<input type="text" data-bind="value:filterText, valueUpdate:'afterkeydown'" />
+<div class="input-group input-group-lg">
+  <input type="text" class="form-control" placeholder="Search" data-bind="value:filterText, valueUpdate:'afterkeydown'" />
+</div>
 
 <div class="cards-container" data-bind="foreach:gerechten">
 	<div class="card-container">
