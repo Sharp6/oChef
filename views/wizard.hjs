@@ -20,15 +20,12 @@
 						
 					</div>
 					<div class="footer">
-						<span data-bind="text:averageRating"></span>
 						<div class="starRating">
-							<span data-bind="visible: averageRating() > 0"></span>
-							<span data-bind="visible: averageRating() > 1"></span>
-							<span data-bind="visible: averageRating() > 2"></span>
-							<span data-bind="visible: averageRating() > 3"></span>
-							<span data-bind="visible: averageRating() > 4"></span>
-							
-
+							<span data-bind="visible: averageRating() > 0" class="hoverChosen"></span>
+							<span data-bind="visible: averageRating() > 1" class="hoverChosen"></span>
+							<span data-bind="visible: averageRating() > 2" class="hoverChosen"></span>
+							<span data-bind="visible: averageRating() > 3" class="hoverChosen"></span>
+							<span data-bind="visible: averageRating() > 4" class="hoverChosen"></span>
 						</div>
 					</div>
 				</div>
