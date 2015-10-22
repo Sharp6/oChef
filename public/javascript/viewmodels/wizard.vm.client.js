@@ -30,8 +30,8 @@ define(["knockout",
             
             newGerecht.rating.subscribe(function(newValue){
               gerechtDA.save(ko.toJSON(newGerecht));
-            }
-            
+            });
+
             self.gerechten.push(newGerecht);
           });
       });
