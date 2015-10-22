@@ -1,6 +1,6 @@
 "use strict";
 
-(function () {
+(function (ko) {
     var $container, haveInitialized, newNodes = [], itemClass, masonryOptions;
 
     function afterAdd(node, index, item) {
@@ -102,4 +102,4 @@
             return { controlsDescendantBindings: true };
         }
     };
-})();
+})(ko);
