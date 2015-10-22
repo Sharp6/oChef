@@ -25,6 +25,7 @@ var gerechtCtrl = function(Gerecht, gerechtDA, Busboy) {
 
 		query.exec(function(err,results) {
 			results.forEach(function(gerecht) {
+				// Dit dient om de correct userRating te zetten, niet om de userId te zetten.
 				gerecht.userId = req.user ? req.user._id : null;
 			});
 

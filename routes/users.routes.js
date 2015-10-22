@@ -12,6 +12,9 @@ var userRoutes = function(mainCtrl) {
 	userRouter.route('/')
 		.get(mainCtrl.renderUsers);
 
+	userRouter.route('/getUser')
+		.get(mainCtrl.getUser);
+
 	return userRouter;
 }
 

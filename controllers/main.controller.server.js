@@ -1,4 +1,9 @@
 var mainController = function() {
+
+	var getUser = function(req,res) {
+		res.json(req.user);
+	}
+
 	var renderHome = function(req,res) {
 		res.render('container', 
 			{
