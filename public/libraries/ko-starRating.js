@@ -23,6 +23,8 @@ define(['knockout', 'jquery'], function(ko, $) {
         $("span", element).each(function(index) {
             $(this).toggleClass("chosen", index < observable());
         });
+
+        console.log("I update!");
     }    
   };
 });
