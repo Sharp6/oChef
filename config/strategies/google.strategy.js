@@ -5,7 +5,7 @@ module.exports = function(User) {
 	passport.use(new GoogleStrategy({
   clientID: '864481022770-9trivngg51atkd3e25gv4igdiliuqrpt.apps.googleusercontent.com',
   clientSecret: 'EagiMsEnuMDTiDc3Q7Z5ulA4',
-  callbackURL: 'http://localhost:8080/auth/google/callback'},
+  callbackURL: process.env.SERVERBASE + '/auth/google/callback'},
   function(req, accessToken, refreshToken, profile, done){
     var query = {
       'google.id' : profile.id
