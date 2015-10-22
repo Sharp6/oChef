@@ -1,6 +1,18 @@
-"use strict";
+(function (factory) {
+    // Module systems magic dance.
 
-(function (ko) {
+    if (typeof require === "function" && typeof exports === "object" && typeof module === "object") {
+        // CommonJS or Node: hard-coded dependency on "knockout"
+        factory(require("knockout"), require("masonry"));
+    } else if (typeof define === "function" && define["amd"]) {
+        // AMD anonymous module with hard-coded dependency on "knockout"
+        define(["knockout", "masonry"], factory);
+    } else {
+        // <script> tag: use the global `ko` object, attaching a `mapping` property
+        factory(ko, masonry);
+    }
+}
+(function (ko,masonry) {
     var $container, haveInitialized, newNodes = [], itemClass, masonryOptions;
 
     function afterAdd(node, index, item) {
@@ -102,4 +114,4 @@
             return { controlsDescendantBindings: true };
         }
     };
-})(ko);
+}));
