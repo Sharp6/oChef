@@ -34,6 +34,7 @@ var mainController = function() {
 	}
 
 	return {
+		getUser: getUser,
 		renderUsers: renderUsers,
 		renderHome: renderHome,
 		renderLogin: renderLogin,
