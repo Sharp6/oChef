@@ -41,7 +41,7 @@ define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client"], f
 
     self.averageRating = ko.computed(function() {
       var totaal = 0;
-      self.ratings.forEach(function(ratingWaarde) {
+      self.ratings().forEach(function(ratingWaarde) {
         totaal = totaal + ratingWaarde;
       });
       if(self.ratings().length > 0) {

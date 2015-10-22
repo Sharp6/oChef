@@ -21,7 +21,7 @@
 					</div>
 					<div class="footer">
 						<div class="rating">
-							<span data-bind="text:averageRatin"></span>
+							<span data-bind="text:averageRating"></span>
 						</div>
 					</div>
 				</div>
