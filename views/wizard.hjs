@@ -47,7 +47,7 @@
 					</div>
 				</div>
 				<div class="footer">
-					<div class="text-center">
+					<div class="text-center" data-bind="visible:$parent.user">
 						<span data-bind="starRating:rating"></span>
 					</div>
 				</div>

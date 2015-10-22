@@ -23,13 +23,19 @@ require.config({
 	}
 });
 
-require(["jquery", "bootstrap", "knockout", "knockoutFileBindings", "koStarRating", "bindingMasonry", "masonry", "imagesloaded", "viewmodels/wizard.vm.client"], 
-	function($, bootstrap, ko, koFileBindings, koStarRating, bindingMasonry, Masonry, imagesLoaded, WizardVM) {
+require(["jquery", "bootstrap", "knockout", "knockoutFileBindings", "koStarRating", "bindingMasonry", "masonry", "imagesloaded", "viewmodels/wizard.vm.client", "viewmodels/user.vm.client"], 
+	function($, bootstrap, ko, koFileBindings, koStarRating, bindingMasonry, Masonry, imagesLoaded, WizardVM, UserVM) {
+	
+	var uVM = new UserVM();
+	uVM.init();
 	var wVM = new WizardVM();
 	wVM.init();
+
+	uVM.user.subscribe(function(newValue) {
+		wVM.user(newValue);
+	});
+	
 	ko.applyBindings(wVM);
-
-
 
 	/*
 	var imgLoad;

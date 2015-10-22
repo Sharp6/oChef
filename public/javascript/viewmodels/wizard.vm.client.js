@@ -10,6 +10,7 @@ define(["knockout",
 
     self.gerechten = ko.observableArray();
     self.filterText = ko.observable('');
+    self.user = ko.observable();
 
     self.filteredGerechten = ko.computed(function() {
       var filter = self.filterText().toLowerCase();

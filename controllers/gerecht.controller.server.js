@@ -87,11 +87,6 @@ var gerechtCtrl = function(Gerecht, gerechtDA, Busboy) {
 
 		gerechtDA.updateGerecht(req.gerecht)
 			.then(function(updatedGerecht) {
-
-				res.header('Access-Control-Allow-Origin', req.headers.origin || "*");
-				res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,HEAD,DELETE,OPTIONS');
-				res.header('Access-Control-Allow-Headers', 'content-Type,x-requested-with');
-				
 				res.json(updatedGerecht);
 			})
 			.catch(function(err) {
