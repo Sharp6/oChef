@@ -6,14 +6,14 @@
         factory(require("knockout"), require("masonry"));
     } else if (typeof define === "function" && define["amd"]) {
         // AMD anonymous module with hard-coded dependency on "knockout"
-        define(["knockout", "masonry", "jquery"], factory);
+        define(["knockout", "masonry"], factory);
     } else {
         // <script> tag: use the global `ko` object, attaching a `mapping` property
         factory(ko, masonry);
     }
 }
-(function (ko,masonry,$) {
-    var $container, haveInitialized, newNodes = [], itemClass, masonryOptions;
+(function (ko,masonry) {
+    var msnry, haveInitialized, newNodes = [], itemClass, masonryOptions;
 
     function afterAdd(node, index, item) {
         if (node.nodeType !== 1) {
@@ -54,7 +54,7 @@
             itemClass = ko.bindingHandlers.masonry.defaultItemClass;
             masonryOptions = {};
             haveInitialized = false;
-            $container = $(element);
+            //$container = $(element);
 
             var parameters = ko.utils.unwrapObservable(valueAccessor());
             if (parameters && typeof parameters == 'object' && !('length' in parameters)) {
@@ -99,14 +99,14 @@
             if (!haveInitialized) {
                 masonryOptions.itemSelector = '.' + itemClass;
                 console.log({msg: 'Binding update called for 1st time, initializing Masonry', options: masonryOptions});
-                $container.masonry(masonryOptions);
+                msnry = new Masonry( element, masonryOptions);
             }
             else {
                 console.log({ msg: 'Binding update called again, appending to Masonry', elements: newNodes });
-                var newElements = $(newNodes);
+                /*var newElements = $(newNodes);
                 $container.masonry('appended', newElements);
                 $container.masonry('layout');
-                newNodes.splice(0, newNodes.length); // reset back to empty
+                newNodes.splice(0, newNodes.length); // reset back to empty*/
             }
 
             // Update gets called upon initial rendering as well
