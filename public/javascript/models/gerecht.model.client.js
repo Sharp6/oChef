@@ -8,6 +8,7 @@ define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client"], f
     self.beschrijving = ko.observable(data.beschrijving || '');
     self.nota = ko.observable(data.nota || '');
     self.rating = ko.observable(data.userRating || 0);
+    self.ratings = ko.observableArray();
     self.takeout = ko.observable(data.takeout || false);
     self.ingredienten = ko.observableArray();
     self.fileData = ko.observable({
@@ -31,6 +32,23 @@ define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client"], f
         self.ingredienten.push(new Ingredient(ingredientData));
       });  
     }
+
+    if(data.ratings) {
+      data.ratings.forEach(function(rating) {
+        self.ratings.push(rating.waarde);
+      });
+    }
+
+    self.averageRating = ko.computed(function() {
+      var totaal = 0;
+      self.ratings.forEach(function(ratingWaarde) {
+        totaal = totaal + ratingWaarde;
+      });
+      if(self.ratings().length > 0) {
+        totaal = totaal / self.ratings().length;
+      }
+      return totaal;
+    });
     
     self.save = function() {
       //return gerechtCtrl.save(ko.toJSON(self));
