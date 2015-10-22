@@ -5,8 +5,8 @@ require.config({
 		"typeahead" : { "deps" : ['bootstrap'] },
 		"binding-typeahead" : { "deps": ['bootstrap'] },
 		"knockoutFileBindings" : { "deps": ['knockout', 'jquery'] },
-		"knockoutMarkdownBindings" : { "deps" : ['knockout', 'markdown'] }
-		"koStarRating" : { "deps" : ['knockout', 'jquery']}
+		"knockoutMarkdownBindings" : { "deps" : ['knockout', 'markdown'] },
+		"koStarRating" : { "deps" : ['knockout', 'jquery'] }
 	},
 	paths: {
 		jquery: '/libraries/jquery-2.1.3.min',
