@@ -26,7 +26,14 @@ define(["knockout",
       gerechtDA.load()
         .then(function(gerechtenData) {
           gerechtenData.forEach(function(gerechtData) {
-            self.gerechten.push(new Gerecht(gerechtData));
+            var newGerecht = new Gerecht(gerechtData);
+            /*
+             newGerecht.rating.subscribe(function(newValue){
+               gerechtDA.sava(ko.toJSON(newGerecht))
+               }
+              //, call gerechtDA.sava(ko.toJSON(newGerecht))
+            */
+            self.gerechten.push(newGerecht);
           });
       });
     }

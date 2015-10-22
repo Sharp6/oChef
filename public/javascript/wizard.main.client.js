@@ -29,6 +29,8 @@ require(["jquery", "bootstrap", "knockout", "knockoutFileBindings", "koStarRatin
 	wVM.init();
 	ko.applyBindings(wVM);
 
+
+
 	/*
 	var imgLoad;
 	var msnry;
