@@ -12,7 +12,7 @@
         factory(ko, masonry);
     }
 }
-(function (ko,masonry) {
+(function (ko,Masonry) {
     var msnry, haveInitialized, newNodes = [], itemClass, masonryOptions;
 
     function afterAdd(node, index, item) {
