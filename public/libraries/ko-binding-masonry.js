@@ -6,13 +6,13 @@
         factory(require("knockout"), require("masonry"));
     } else if (typeof define === "function" && define["amd"]) {
         // AMD anonymous module with hard-coded dependency on "knockout"
-        define(["knockout", "masonry"], factory);
+        define(["knockout", "masonry", "jquery"], factory);
     } else {
         // <script> tag: use the global `ko` object, attaching a `mapping` property
         factory(ko, masonry);
     }
 }
-(function (ko,Masonry) {
+(function (ko,Masonry,$) {
     var msnry, haveInitialized, newNodes = [], itemClass, masonryOptions;
 
     function afterAdd(node, index, item) {
@@ -107,7 +107,8 @@
                 $container.masonry('appended', newElements);
                 $container.masonry('layout');
                 newNodes.splice(0, newNodes.length); // reset back to empty*/
-                msnry.appended(newNodes);
+                var newElements = $(newNodes);
+                msnry.appended(newElements);
                 msnry.layout();
                 newNodes.splice(0, newNodes.length); // reset back to empty*/
             }
