@@ -5,15 +5,15 @@ require.config({
 		"typeahead" : { "deps" : ['bootstrap'] },
 		"binding-typeahead" : { "deps": ['bootstrap'] },
 		"knockoutFileBindings" : { "deps": ['knockout', 'jquery'] },
-		"knockoutMarkdownBindings" : { "deps" : ['knockout', 'markdown'] }
+		"knockoutMarkdownBindings" : { "deps" : ['knockout', 'markdown-it'] },
 		"koStarRating" : { "deps" : ['knockout', 'jquery']}
 	},
 	paths: {
 		jquery: '/libraries/jquery-2.1.3.min',
 		knockout: '/libraries/knockout-3.3.0',
 		knockoutFileBindings: '/libraries/knockout-file-bindings',
-		knockoutMarkdownBindings: '/libraries/knockout.markdown.js',
-		markdown: '/libraries/markdown-it.min',
+		knockoutMarkdownBindings: '/libraries/knockout.markdown',
+		"markdown-it": '/libraries/markdown-it.min',
 		bootstrap: '/libraries/bootstrap.min',
 		moment: '/libraries/moment-with-locales.min',
 		koStarRating: '/libraries/ko-starRating'

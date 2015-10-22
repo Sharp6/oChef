@@ -7,6 +7,9 @@ define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client"], f
     self.naam = ko.observable(data.naam || '');
     self.beschrijving = ko.observable(data.beschrijving || '');
     self.nota = ko.observable(data.nota || '');
+    self.bron = ko.observable(data.bron || '');
+    self.recept = ko.observable(data.recept || '');
+    self.referentie = ko.observable(data.referentie || '');
     self.rating = ko.observable(data.userRating || 0);
     self.takeout = ko.observable(data.takeout || false);
     self.ingredienten = ko.observableArray();

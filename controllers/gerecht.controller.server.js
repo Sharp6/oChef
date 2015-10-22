@@ -44,6 +44,9 @@ var gerechtCtrl = function(Gerecht, gerechtDA, Busboy) {
 		req.gerecht.naam = gerechtData.naam;
 		req.gerecht.nota = gerechtData.nota;
 		req.gerecht.takeout = gerechtData.takeout;
+		req.gerecht.bron = gerechtData.bron;
+		req.gerecht.referentie = gerechtData.referentie;
+		req.gerecht.recept = gerechtData.recept;
 		req.gerecht.beschrijving = gerechtData.beschrijving;
 		req.gerecht.ingredienten = gerechtData.ingredienten;
 

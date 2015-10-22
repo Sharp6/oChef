@@ -1,12 +1,16 @@
 var Gerecht = function(mongoose, Ingredient) {
+	var marked = require('marked');
 	var Schema = mongoose.Schema;
 
 	var gerechtSchema = new Schema({
 		naam: String,
 		nota: String, 
 		beschrijving: String,
+		recept: String,
 		takeout: Boolean,
 		image: Boolean,
+		bron: String,
+		referentie: String,
 		userRating: Number,
 		ingredienten: [{
 			type: Schema.Types.ObjectId,

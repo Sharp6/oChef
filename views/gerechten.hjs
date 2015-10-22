@@ -48,6 +48,27 @@
           <textarea class="form-control" placeholder="Here can be your nice text" rows="3" data-bind="value:beschrijving, visible:$parent.editMode"></textarea>
         </div>
 
+        <div>
+          <h5>Recept</h5>
+          Raw markdown: <br/>
+          <div data-bind="text:recept"></div>
+          Rendered markdown: <br />
+          <div data-bind="markdown:recept"></div>
+          <textarea class="form-control" placeholder="Hier kan een recept in markdown ingevoerd worden." rows="3" data-bind="value:recept, visible:$parent.editMode"></textarea>
+        </div>
+
+        <div>
+          <h5>Bron</h5>
+          <p data-bind="text:bron, visible: $parent.notEditMode"></p>
+          <input type="text" class="form-control" data-bind="value:bron, visible:$parent.editMode" />
+        </div>
+
+        <div>
+          <h5>Referentie</h5>
+          <p data-bind="text:referentie, visible: $parent.notEditMode"></p>
+          <input type="text" class="form-control" data-bind="value:referentie, visible:$parent.editMode" />
+        </div>
+
         <div data-bind="visible:$parent.editMode">
           <h5>Takeout</h5>
           <div><input type="checkbox" data-bind="checked:takeout" /> Take-out</div>

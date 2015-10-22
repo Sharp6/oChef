@@ -6,7 +6,7 @@
         factory(require("knockout"), require("markdown-it"));
     } else if (typeof define === "function" && define["amd"]) {
         // AMD anonymous module with hard-coded dependency on "knockout"
-        define(["knockout"], ["markdown-it"], factory);
+        define(["knockout", "markdown-it"], factory);
     } else {
         // <script> tag: use the global `ko` object, attaching a `mapping` property
         factory(ko, markdownit);
@@ -14,6 +14,7 @@
 }
 (function (ko, markdown) {
     ko.markdown = markdown();
+    console.log("Hello markdown");
 
 	ko.bindingHandlers.markdown = {
 		update: function(element, valueAccessor, allBindingsAccessor) {
