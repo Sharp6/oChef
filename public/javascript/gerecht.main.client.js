@@ -12,7 +12,7 @@ require.config({
 		jquery: '/libraries/jquery-2.1.3.min',
 		knockout: '/libraries/knockout-3.3.0',
 		knockoutFileBindings: '/libraries/knockout-file-bindings',
-		knockoutMarkdownBindings: '/libraries/knockout.markdown.js',
+		knockoutMarkdownBindings: '/libraries/knockout.markdown',
 		markdown: '/libraries/markdown-it.min',
 		bootstrap: '/libraries/bootstrap.min',
 		moment: '/libraries/moment-with-locales.min',
