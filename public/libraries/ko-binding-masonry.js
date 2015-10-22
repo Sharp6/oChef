@@ -6,21 +6,14 @@
         factory(require("knockout"), require("masonry"));
     } else if (typeof define === "function" && define["amd"]) {
         // AMD anonymous module with hard-coded dependency on "knockout"
-        define(["knockout", "masonry", "jquery"], factory);
+        define(["knockout", "masonry"], factory);
     } else {
         // <script> tag: use the global `ko` object, attaching a `mapping` property
         factory(ko, masonry);
     }
 }
-(function (ko,Masonry,$) {
-    var msnry, haveInitialized, newNodes = [], itemClass, masonryOptions;
-
-    function afterAdd(node, index, item) {
-        if (node.nodeType !== 1) {
-            return; // This isn't an element node, nevermind
-        }
-        newNodes.push(node);
-    }
+(function (ko,Masonry) {
+    var msnry, haveInitialized, itemClass, masonryOptions;
 
     ko.bindingHandlers.masonry = {
         defaultItemClass: 'grid-item',
@@ -33,7 +26,6 @@
                     unwrappedValue = ko.utils.peekObservable(modelValue);    // Unwrap without setting a dependency here
 
                 options = {
-                    afterAdd: afterAdd
                 };
 
                 // If unwrappedValue.data is the array, preserve all relevant
@@ -49,12 +41,9 @@
             };
         },
         'init': function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-            console.log({ msg: 'Initializing binding' });
-
             itemClass = ko.bindingHandlers.masonry.defaultItemClass;
             masonryOptions = {};
             haveInitialized = false;
-            //$container = $(element);
 
             var parameters = ko.utils.unwrapObservable(valueAccessor());
             if (parameters && typeof parameters == 'object' && !('length' in parameters)) {
@@ -72,8 +61,8 @@
                     }
                     ko.utils.extend(masonryOptions, clientOptions);
                 }
-                if (parameters.itemClass) {
-                    itemClass = parameters.itemClass;
+                if (parameters.masonryOptions.itemClass) {
+                    itemClass = parameters.masonryOptions.itemClass;
                 }
             }
 
@@ -98,23 +87,16 @@
 
             if (!haveInitialized) {
                 masonryOptions.itemSelector = '.' + itemClass;
-                console.log({msg: 'Binding update called for 1st time, initializing Masonry', options: masonryOptions});
                 msnry = new Masonry( element, masonryOptions);
+		haveInitialized = true;
             }
             else {
-                console.log({ msg: 'Binding update called again, appending to Masonry', elements: newNodes });
-                /*var newElements = $(newNodes);
-                $container.masonry('appended', newElements);
-                $container.masonry('layout');
-                newNodes.splice(0, newNodes.length); // reset back to empty*/
-                var newElements = $(newNodes);
-                msnry.appended(newElements);
+		msnry.reloadItems();
                 msnry.layout();
-                newNodes.splice(0, newNodes.length); // reset back to empty*/
             }
 
             // Update gets called upon initial rendering as well
-            haveInitialized = true;
+            // haveInitialized = true;
             return { controlsDescendantBindings: true };
         }
     };
