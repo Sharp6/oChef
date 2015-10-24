@@ -2,7 +2,15 @@
   <input type="text" class="form-control searchBox" placeholder="Search" data-bind="value:filterText, valueUpdate:'afterkeydown'" />
 </div>
 
-<div class="cards-container" data-bind="masonry: {data: filteredGerechten, masonryOptions: {itemClass: 'card-container', isFitWidth: true}}">
+<span data-bind="text:historySort"></span>
+
+<div>
+	<p><input type="checkbox" data-bind="checked:historySort"/> History</p>
+	<p><input type="checkbox" data-bind="checked:ratingSort"/> Rating</p>
+	<p><input type="checkbox" data-bind="checked:seizoenSort"/> Seizoen</p>
+</div>
+
+<div class="cards-container" data-bind="masonry: {data: sortedGerechten, masonryOptions: {itemClass: 'card-container', isFitWidth: true}}">
 	<div class="card-container">
 		<div class="card">
 			<div class="front">
@@ -42,6 +50,14 @@
 						<div data-bind="foreach:ingredienten">
 	          	<span data-bind="text:naam" class="label label-info"></span>
 	          </div>
+
+	          <h4 class="text-center">Scores</h4>
+	          <ul data-bind="foreach:scores">
+	          	<li>
+		          	<span data-bind="text:$data.label"></span>
+		          	<span data-bind="text:$data.score"></span>
+		          </li>
+	          </ul>
 						
 					</div>
 				</div>

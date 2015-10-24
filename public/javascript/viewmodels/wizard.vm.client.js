@@ -1,9 +1,11 @@
 define(["knockout", 
     "da/gerecht.da.client", 
-    "models/gerecht.model.client", "models/ingredient.model.client"], 
+    "models/gerecht.model.client", "models/ingredient.model.client",
+    "logic/chefAlyzer"], 
     function(ko, 
         gerechtDA, 
-        Gerecht, Ingredient) {
+        Gerecht, Ingredient,
+        chefAlyzer) {
 
   var vm = function() {
     var self = this;
@@ -11,6 +13,10 @@ define(["knockout",
     self.gerechten = ko.observableArray();
     self.filterText = ko.observable('');
     self.user = ko.observable();
+
+    self.historySort = ko.observable();
+    self.ratingSort = ko.observable();
+    self.seizoenSort = ko.observable();
 
     self.filteredGerechten = ko.computed(function() {
       var filter = self.filterText().toLowerCase();
@@ -23,6 +29,43 @@ define(["knockout",
       }
     });
 
+    self.sortedGerechten = ko.observableArray();
+    self.sortGerechten = ko.computed(function() {
+      if(!self.historySort() && !self.ratingSort() && !self.seizoenSort()) {
+        // No sort criteria selected 
+        self.sortedGerechten(self.filteredGerechten());
+        return self.filteredGerechten;
+      } else {
+        // Got sorting criteria!
+        self.filteredGerechten().forEach(function(gerecht) {
+          chefAlyzer.calculateTotalScore(gerecht, self.historySort(), self.ratingSort(), self.seizoenSort());
+        });
+
+        var sortedArray = self.filteredGerechten().sort(function(left,right) {
+
+          var leftScore = ko.utils.arrayFirst(left.scores(), function(score) {
+            return score.label == "Totaal";
+          });
+
+          var rightScore = ko.utils.arrayFirst(right.scores(), function(score) {
+            return score.label == "Totaal";
+          });
+
+          if(leftScore.score == rightScore.score) {
+            return 0;
+          } else {
+            return leftScore.score < rightScore.score ? 1 : -1;  
+          }
+          
+        });
+
+        self.sortedGerechten(sortedArray);
+
+        return self.filteredGerechten;
+
+      }
+    });
+
     function checkIngredienten(gerecht, filter) {
       var results = ko.utils.arrayFilter(gerecht.ingredienten(), function(ingredient) {
         return ingredient.naam().toLowerCase().indexOf(filter) !== -1;
@@ -30,8 +73,14 @@ define(["knockout",
       return results.length > 0;
     }
 
+    self.calculateScores = function() {
+      chefAlyzer.calculateRatingScores(self.filteredGerechten);
+      chefAlyzer.calculateHistoryScores(self.filteredGerechten);
+      chefAlyzer.calculateSeizoenScores(self.filteredGerechten);
+    };
+
     self.loadGerechten = function() {
-      gerechtDA.load()
+      return gerechtDA.load()
         .then(function(gerechtenData) {
           gerechtenData.forEach(function(gerechtData) {
             var newGerecht = new Gerecht(gerechtData);
@@ -40,13 +89,16 @@ define(["knockout",
               gerechtDA.save(ko.toJSON(newGerecht));
             });
 
+            console.log(gerechtData);
+
             self.gerechten.push(newGerecht);
           });
       });
     }
 
     self.init = function() {
-      self.loadGerechten();
+      self.loadGerechten()
+        .then(self.calculateScores);
     }
   };
 

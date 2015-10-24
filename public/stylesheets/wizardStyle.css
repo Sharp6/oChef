@@ -39,7 +39,9 @@ div.searchContainer {
 	margin: 0 auto;
 }
 
-input.searchBox {
+.input-group-lg>.form-control.searchBox {
+	font-size: 50px;
+	height: 92px;
 }
 
 .cards-container {

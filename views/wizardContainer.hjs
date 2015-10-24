@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
     <link rel='stylesheet' href='/stylesheets/knockout-file-bindings.css' />
     <link rel='stylesheet' href='/stylesheets/rotating-card.css' />
+    <link rel='stylesheet' href='/stylesheets/get-shit-done.css' />
     <link rel='stylesheet' href='/stylesheets/wizardStyle.css' />
     
   </head>
@@ -49,7 +50,7 @@
       </div>
     </nav>
 
-    <div class="container" id="mainContent">
+    <div class="container-fluid" id="mainContent">
 
       {{>body}}
     </div><!-- /.container -->
