@@ -12,10 +12,10 @@ define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client"], f
     self.referentie = ko.observable(data.referentie || '');
     self.rating = ko.observable(data.userRating);
     self.ratings = ko.observableArray();
-    self.scores =  ko.observableArray();
     self.takeout = ko.observable(data.takeout || false);
     self.ingredienten = ko.observableArray();
     self.inDiepvries = ko.observable(data.inDiepvries || false);
+    self.scores =  ko.observableArray();
     self.fileData = ko.observable({
       dataURL: ko.observable(),
       file: ko.observable()
@@ -36,6 +36,18 @@ define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client"], f
       data.ingredienten.forEach(function(ingredientData) {
         self.ingredienten.push(new Ingredient(ingredientData));
       });  
+    }
+
+    if(data.historyScore) {
+      self.scores.push({ scoreName: 'history', score: data.historyScore, label: 'Recentheids-score' });
+    }
+
+    if(data.ratingScore) {
+      self.scores.push({ scoreName: 'rating', score: data.ratingScore, label: 'Rating-score' }); 
+    }
+
+    if(data.seizoenScore) {
+      self.scores.push({ scoreName: 'seizoen', score: data.seizoenScore, label: 'Seizoens-score' }); 
     }
 
     if(data.ratings) {

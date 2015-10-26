@@ -4,8 +4,6 @@ function(ko, moment, maaltijdDA, Maaltijd) {
 	function calculateRatingScores(gerechten) {
 		return new Promise(function(resolve,reject) {
 			gerechten().forEach(function(gerecht) {
-				
-				
 				if(gerecht.averageRating()) {
 					var ratingScore = ko.observable();
 					ratingScore(gerecht.averageRating() * 2);
@@ -110,28 +108,28 @@ function(ko, moment, maaltijdDA, Maaltijd) {
 		var score = 0;
 		if(histortyBoolean) {
 			var historyScore = ko.utils.arrayFirst(gerecht.scores(), function(score) {
-				return score.label == 'Tijd geleden';
+				return score.scoreName == 'history';
 			});
 			if(historyScore) {
-				score = score + historyScore.score();
+				score = score + historyScore.score;
 			}
 		}
 
 		if(ratingBoolean) {
 			var ratingScore = ko.utils.arrayFirst(gerecht.scores(), function(score) {
-				return score.label == 'Rating';
+				return score.scoreName == 'rating';
 			});
 			if(ratingScore) {
-				score = score + ratingScore.score();
+				score = score + ratingScore.score;
 			}
 		}
 
 		if(seizoenBoolean) {
 			var seizoenScore = ko.utils.arrayFirst(gerecht.scores(), function(score) {
-				return score.label == 'In seizoen';
+				return score.scoreName == 'seizoen';
 			});
 			if(seizoenScore) {
-				score = score + seizoenScore.score();
+				score = score + seizoenScore.score;
 			}
 		}
 
@@ -139,12 +137,10 @@ function(ko, moment, maaltijdDA, Maaltijd) {
 			score = 0;
 		}
 
-		addScore(gerecht, { label: 'Totaal', score: score });
+		addScore(gerecht, { scoreName: 'totaal', score: score, label: 'Totale score' });
 
 		return score;
 	}
-
-
 
 	function loadMaaltijden() {
 	  return maaltijdDA.load()
@@ -159,9 +155,9 @@ function(ko, moment, maaltijdDA, Maaltijd) {
 
 
 	return {
-		calculateHistoryScores: calculateHistoryScores,
-		calculateRatingScores : calculateRatingScores,
-		calculateSeizoenScores: calculateSeizoenScores,
+		//calculateHistoryScores: calculateHistoryScores,
+		//calculateRatingScores : calculateRatingScores,
+		//calculateSeizoenScores: calculateSeizoenScores,
 		calculateTotalScore: calculateTotalScore
 	}
 })

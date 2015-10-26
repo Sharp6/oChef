@@ -18,12 +18,25 @@ define(["knockout",
     self.ratingSort = ko.observable();
     self.seizoenSort = ko.observable();
 
+    self.diepvriesBoolean = ko.observable();
+
+    self.diepvriesGerechten = ko.computed(function() {
+      if(self.diepvriesBoolean()) {
+        // filter op diepvries
+        return ko.utils.arrayFilter(self.gerechten(), function(gerecht) {
+          return gerecht.inDiepvries();
+        });
+      } else {
+        return self.gerechten();
+      }
+    }); 
+
     self.filteredGerechten = ko.computed(function() {
       var filter = self.filterText().toLowerCase();
       if(!filter) {
-        return self.gerechten();
+        return self.diepvriesGerechten();
       } else {
-        return ko.utils.arrayFilter(self.gerechten(), function(gerecht) {
+        return ko.utils.arrayFilter(self.diepvriesGerechten(), function(gerecht) {
           return (gerecht.naam().toLowerCase().indexOf(filter) !== -1 || checkIngredienten(gerecht, filter));
         });
       }
@@ -44,11 +57,11 @@ define(["knockout",
         var sortedArray = self.filteredGerechten().sort(function(left,right) {
 
           var leftScore = ko.utils.arrayFirst(left.scores(), function(score) {
-            return score.label == "Totaal";
+            return score.scoreName == "totaal";
           });
 
           var rightScore = ko.utils.arrayFirst(right.scores(), function(score) {
-            return score.label == "Totaal";
+            return score.scoreName == "totaal";
           });
 
           if(leftScore.score == rightScore.score) {
@@ -56,13 +69,10 @@ define(["knockout",
           } else {
             return leftScore.score < rightScore.score ? 1 : -1;  
           }
-          
         });
 
         self.sortedGerechten(sortedArray);
-
         return self.filteredGerechten;
-
       }
     });
 
@@ -74,9 +84,9 @@ define(["knockout",
     }
 
     self.calculateScores = function() {
-      chefAlyzer.calculateRatingScores(self.filteredGerechten);
-      chefAlyzer.calculateHistoryScores(self.filteredGerechten);
-      chefAlyzer.calculateSeizoenScores(self.filteredGerechten);
+      //chefAlyzer.calculateRatingScores(self.filteredGerechten);
+      //chefAlyzer.calculateHistoryScores(self.filteredGerechten);
+      //chefAlyzer.calculateSeizoenScores(self.filteredGerechten);
     };
 
     self.loadGerechten = function() {
@@ -97,8 +107,8 @@ define(["knockout",
     }
 
     self.init = function() {
-      self.loadGerechten()
-        .then(self.calculateScores);
+      self.loadGerechten();
+        //.then(self.calculateScores);
     }
   };
 

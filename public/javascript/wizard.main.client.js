@@ -37,19 +37,4 @@ require(["jquery", "bootstrap", "knockout", "knockoutFileBindings", "koStarRatin
 	
 	ko.applyBindings(wVM, document.getElementById('mainContent'));
 	ko.applyBindings(uVM, document.getElementById('userInfo'));
-
-	/*
-	var imgLoad;
-	var msnry;
-	var masonryElement = "div.cards-container";
-	wVM.gerechten.subscribe(function(newGerechten) {
-		imgLoad = imagesLoaded(document.querySelector(masonryElement));
-		imgLoad.on('always', function() {
-			msnry = new Masonry( masonryElement, {
-				columnWidth: '.card-container',
-				itemSelector: '.card-container'
-			});
-		});
-	});
-	*/
 });
