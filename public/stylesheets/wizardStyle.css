@@ -30,6 +30,16 @@
 }
 
 div#userInfo {
+	position: absolute;
+	color: #fff;
+	background-color: #777;
+	top: 0;
+	right: 5%;
+	padding: 1em;
+	text-align: center;
+}
+
+div#userInfo a {
 	color: #fff;
 }
 

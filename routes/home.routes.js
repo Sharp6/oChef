@@ -5,9 +5,6 @@ var mainRoutes = function(mainCtrl) {
 	mainRouter.route('/admin')
 		.get(mainCtrl.renderHome);
 
-	mainRouter.route('/')
-		.get(mainCtrl.renderWizard);
-
 	mainRouter.route('/login')
 		.get(mainCtrl.renderLogin);
 

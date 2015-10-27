@@ -1,5 +1,4 @@
 // POLYFILL
-
 if (!Array.prototype.findIndex) {
   Array.prototype.findIndex = function(predicate) {
     if (this === null) {
@@ -79,6 +78,7 @@ var mainCtrl = require('./controllers/main.controller.server')();
 
 var homeRoutes = require('./routes/home.routes')(mainCtrl);
 var userRoutes = require('./routes/users.routes')(mainCtrl);
+var wizardRoutes = require('./routes/wizard.routes')(mainCtrl);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -105,6 +105,7 @@ app.use('/', ingredientRoutes);
 app.use('/', gerechtRoutes);
 app.use('/', maaltijdRoutes);
 app.use('/', homeRoutes);
+app.use('/', wizardRoutes);
 
 
 // catch 404 and forward to error handler
