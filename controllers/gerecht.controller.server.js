@@ -108,6 +108,18 @@ var gerechtCtrl = function(Gerecht, gerechtDA, Busboy) {
 			});
 	}
 
+	// Tags
+	var getTags = function(req,res) {
+		Gerecht.distinct('tags', function(err,tags) {
+			if(err) {
+				console.log(err);
+				res.json(err);
+			} else {
+				res.json(tags);	
+			}
+		}):
+	}
+
 	// Images
 	var uploadImage = function(req,res) {
 		var busboy = new Busboy({headers: req.headers});
@@ -185,6 +197,8 @@ var gerechtCtrl = function(Gerecht, gerechtDA, Busboy) {
 		updateGerecht: updateGerecht,
 		patchGerecht: patchGerecht,
 		deleteGerecht: deleteGerecht,
+		// Tags
+		getTags: getTags,
 		// Images
 		uploadImage: uploadImage,
 		downloadImg: downloadImage,
