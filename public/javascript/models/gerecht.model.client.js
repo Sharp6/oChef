@@ -1,4 +1,5 @@
-define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client"], function(ko, gerechtDA, Ingredient) {
+define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client", "da/maaltijd.da.client"], 
+function(ko, gerechtDA, Ingredient, maaltijdDA) {
   var gerechtModel = function(data) {
 
     var self = this;
@@ -97,6 +98,10 @@ define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client"], f
 
     self.removeIngredient = function(ingredient) {
       self.ingredienten.remove(ingredient);
+    }
+
+    self.quickSaveMaaltijd = function() {
+      maaltijdDA.quickSaveMaaltijd(self.dbId());
     }
 
   }

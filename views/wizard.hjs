@@ -5,6 +5,7 @@
 			  <input type="text" class="form-control searchBox" placeholder="Search" data-bind="value:filterText, valueUpdate:'afterkeydown'" />
 			</div>
 		</div>
+
 		<div class="form-group text-center">
 			<h4>Sorteer gerechten op:</h4>
 			<div class="checkbox-inline">
@@ -73,8 +74,11 @@
 						<h4 class="text-center">Ingrediënten</h4>
 						<span data-bind="visible:takeout" class="label label-info">takeout</span>
 						<div data-bind="foreach:ingredienten">
-	          	<span data-bind="text:naam, css: seizoenClass" class="label"></span>
-	          </div>
+			          	  <span data-bind="text:naam, css: seizoenClass" class="label"></span>
+			            </div>
+			            <div>
+			            	<button class="btn" data-bind="click:quickSaveMaaltijd">Vandaag gegeten!</button>
+			            </div>
 
 	          <h4 class="text-center">Scores</h4>
 	          <ul data-bind="foreach:scores">

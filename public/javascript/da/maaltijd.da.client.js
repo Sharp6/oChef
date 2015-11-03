@@ -32,6 +32,23 @@ define(['jquery', 'moment'], function($, moment){
 		}).promise();	
 	};
 
+	var quickSaveMaaltijd = function(gerechtDbId) {
+		return createMaaltijd()
+			.then(function(newMaaltijd) {
+				newMaaltijd.datum = moment.utc().valueOf();
+				newMaaltijd.gerecht = gerechtDbId;
+
+				var data = JSON.stringify(newMaaltijd);
+				console.log(data);
+
+				return $.ajax({
+					url: "/api/maaltijden/" + newMaaltijd._id,
+					data: {maaltijd: data},
+					method: "PUT"
+				}).promise();
+			});
+	}
+
 	var removeMaaltijd = function(data) {
 		var dataJS = JSON.parse(data);
 		return $.ajax({
@@ -45,6 +62,7 @@ define(['jquery', 'moment'], function($, moment){
 		load : loadMaaltijden,
 		save: updateMaaltijd,
 		remove: removeMaaltijd,
-		create: createMaaltijd
+		create: createMaaltijd,
+		quickSaveMaaltijd: quickSaveMaaltijd
 	};
 });

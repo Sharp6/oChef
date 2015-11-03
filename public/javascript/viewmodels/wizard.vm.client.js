@@ -12,6 +12,9 @@ define(["knockout",
 
     self.gerechten = ko.observableArray();
     self.filterText = ko.observable('');
+    self.filters = ko.computed(function() {
+      return self.filterText().split(' ');
+    });
     self.user = ko.observable();
 
     self.historySort = ko.observable();
@@ -33,11 +36,19 @@ define(["knockout",
 
     self.filteredGerechten = ko.computed(function() {
       var filter = self.filterText().toLowerCase();
+
       if(!filter) {
         return self.diepvriesGerechten();
       } else {
         return ko.utils.arrayFilter(self.diepvriesGerechten(), function(gerecht) {
-          return (gerecht.naam().toLowerCase().indexOf(filter) !== -1 || checkIngredienten(gerecht, filter));
+          var finalResult = true;
+          self.filters().forEach(function(aFilter,index,arr) {
+            if(!(gerecht.naam().toLowerCase().indexOf(aFilter) !== -1 || checkIngredienten(gerecht, aFilter))){
+              finalResult = false;
+            }            
+          });
+          //return (gerecht.naam().toLowerCase().indexOf(filter) !== -1 || checkIngredienten(gerecht, filter));
+          return finalResult;
         });
       }
     });
@@ -98,9 +109,6 @@ define(["knockout",
             newGerecht.rating.subscribe(function(newValue){
               gerechtDA.save(ko.toJSON(newGerecht));
             });
-
-            console.log(gerechtData);
-
             self.gerechten.push(newGerecht);
           });
       });
