@@ -36,6 +36,26 @@ var gerechtDA = function(Gerecht, gfs) {
 		});
 	}
 
+	// Specifics
+	var addMaaltijd = function(gerechtId, maaltijdId) {
+		return new Promise(function(resolve,reject) {
+			Gerecht.findById(gerechtId, function(err, gerecht) {
+				if(err) {
+					reject(err);
+				} else {
+					gerecht.maaltijden.push({ _id: maaltijdId });
+					gerecht.save(function(err) {
+						if(err) {
+							reject(err);
+						} else {
+							resolve(gerecht);
+						}
+					});
+				}
+			});
+		});
+	}
+
 	// IMG
 	var checkImage = function(id) {
 		return new Promise(function(resolve, reject) {
@@ -82,7 +102,8 @@ var gerechtDA = function(Gerecht, gfs) {
 		deleteGerecht: deleteGerecht,
 		getGerecht: getGerecht,
 		getImageStreamer: getImageStreamer, 
-		getImageReadStream: getImageReadStream
+		getImageReadStream: getImageReadStream,
+		addMaaltijd: addMaaltijd
 	}
 }
 

@@ -21,12 +21,12 @@ var gerechtCtrl = function(Gerecht, gerechtDA, Busboy) {
 	}
 
 	var getGerechten = function(req,res) {
-		var query = Gerecht.find(req.query).populate('ingredienten').sort('naam');
+		var query = Gerecht.find(req.query).populate('ingredienten maaltijden').sort('naam');
 
 		query.exec(function(err,results) {
 			results.forEach(function(gerecht) {
 				// Dit dient om de correct userRating te zetten, niet om de userId te zetten.
-				gerecht.userId = req.user ? req.user._id : null;
+				gerecht.userId = req.user ? req.user._id : null;				
 			});
 
 			res.json(results);
@@ -45,8 +45,12 @@ var gerechtCtrl = function(Gerecht, gerechtDA, Busboy) {
 		req.gerecht.naam = gerechtData.naam;
 		req.gerecht.nota = gerechtData.nota;
 		req.gerecht.takeout = gerechtData.takeout;
+		req.gerecht.bron = gerechtData.bron;
+		req.gerecht.referentie = gerechtData.referentie;
+		req.gerecht.recept = gerechtData.recept;
 		req.gerecht.beschrijving = gerechtData.beschrijving;
 		req.gerecht.ingredienten = gerechtData.ingredienten;
+		req.gerecht.inDiepvries = gerechtData.inDiepvries;
 
 		var index = req.gerecht.ratings.findIndex(function(element, index, array) {
 			return element.userId == req.user._id;

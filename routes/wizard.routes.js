@@ -1,19 +1,19 @@
-var userRoutes = function(mainCtrl) {
+var wizardRoutes = function(mainCtrl) {
 	var express = require('express');
-	var userRouter = express.Router();
+	var wizardRouter = express.Router();
 
-	userRouter.use('/', function(req,res,next) {
+	wizardRouter.use('/', function(req,res,next) {
 		if(!req.user) {
 			res.redirect('/login');
 		}
 		next();
 	});
 
-	userRouter.route('/')
-		.get(mainCtrl.renderUsers);
+	wizardRouter.route('/')
+		.get(mainCtrl.renderWizard);
 
-	return userRouter;
+	return wizardRouter;
 }
 
 
-module.exports = userRoutes;
+module.exports = wizardRoutes;

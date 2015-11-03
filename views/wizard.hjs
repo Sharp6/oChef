@@ -1,9 +1,42 @@
+<div class="container">
+	<form class="form">
+		<div class="form-group">
+			<div class="input-group input-group-lg searchContainer">
+			  <input type="text" class="form-control searchBox" placeholder="Search" data-bind="value:filterText, valueUpdate:'afterkeydown'" />
+			</div>
+		</div>
+		<div class="form-group text-center">
+			<h4>Sorteer gerechten op:</h4>
+			<div class="checkbox-inline">
+		    <label>
+		      <input type="checkbox" data-bind="checked:historySort"/> History
+		    </label>
+		  </div>
 
-<div class="input-group input-group-lg">
-  <input type="text" class="form-control" placeholder="Search" data-bind="value:filterText, valueUpdate:'afterkeydown'" />
+		  <div class="checkbox-inline">
+		    <label>
+		      <input type="checkbox" data-bind="checked:ratingSort"/> Rating
+		    </label>
+		  </div>
+			
+		  <div class="checkbox-inline">
+		    <label>
+		      <input type="checkbox" data-bind="checked:seizoenSort"/> Seizoen
+		    </label>
+		  </div>
+		</div>
+
+		<div class="form-group text-center">
+			<div class="checkbox-inline">
+		    <label>
+		      <input type="checkbox" data-bind="checked:diepvriesBoolean"/> In diepvries
+		    </label>
+		  </div>
+		</div>
+	</form>
 </div>
 
-<div class="cards-container" data-bind="masonry: {data: filteredGerechten, masonryOptions: {itemClass: 'card-container'}}">
+<div class="cards-container" data-bind="masonry: {data: sortedGerechten, masonryOptions: {itemClass: 'card-container', isFitWidth: true}}">
 	<div class="card-container">
 		<div class="card">
 			<div class="front">
@@ -31,7 +64,6 @@
 				</div>
 			</div> <!-- end front panel -->
 
-
 			<div class="back">
 				<div class="header">
 					<h5 class="motto" data-bind="text:naam"></h5>
@@ -41,13 +73,21 @@
 						<h4 class="text-center">Ingrediënten</h4>
 						<span data-bind="visible:takeout" class="label label-info">takeout</span>
 						<div data-bind="foreach:ingredienten">
-	          	<span data-bind="text:naam" class="label label-info"></span>
+	          	<span data-bind="text:naam, css: seizoenClass" class="label"></span>
 	          </div>
+
+	          <h4 class="text-center">Scores</h4>
+	          <ul data-bind="foreach:scores">
+	          	<li>
+		          	<span data-bind="text:$data.label"></span>
+		          	<span data-bind="text:$data.score"></span>
+		          </li>
+	          </ul>
 						
 					</div>
 				</div>
 				<div class="footer">
-					<div class="text-center">
+					<div class="text-center" data-bind="visible:$parent.user">
 						<span data-bind="starRating:rating"></span>
 					</div>
 				</div>

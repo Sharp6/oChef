@@ -46,6 +46,7 @@ var ingredientController = function(Ingredient, ingredientDA) {
 		req.ingredient.nota = ingredientData.nota;
 		req.ingredient.beschrijving = ingredientData.beschrijving;
 		req.ingredient.maandenInSeizoen = ingredientData.maandenInSeizoen;
+		req.ingredient.inDiepvries = ingredientData.inDiepvries;
 		req.ingredient.tags = ingredientData.tags;
 
 		ingredientDA.updateIngredient(req)

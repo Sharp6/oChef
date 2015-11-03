@@ -4,7 +4,7 @@ var passport = require('passport');
 
 router.route('/google/callback')
 	.get(passport.authenticate('google', {
-		successRedirect: '/users/',
+		successRedirect: '/',
 		failure: '/error/'
 	}));
 

@@ -23,26 +23,18 @@ require.config({
 	}
 });
 
-require(["jquery", "bootstrap", "knockout", "knockoutFileBindings", "koStarRating", "bindingMasonry", "masonry", "imagesloaded", "viewmodels/wizard.vm.client"], 
-	function($, bootstrap, ko, koFileBindings, koStarRating, bindingMasonry, Masonry, imagesLoaded, WizardVM) {
+require(["jquery", "bootstrap", "knockout", "knockoutFileBindings", "koStarRating", "bindingMasonry", "masonry", "imagesloaded", "viewmodels/wizard.vm.client", "viewmodels/user.vm.client"], 
+	function($, bootstrap, ko, koFileBindings, koStarRating, bindingMasonry, Masonry, imagesLoaded, WizardVM, UserVM) {
+	
+	var uVM = new UserVM();
+	uVM.init();
 	var wVM = new WizardVM();
 	wVM.init();
-	ko.applyBindings(wVM);
 
-
-
-	/*
-	var imgLoad;
-	var msnry;
-	var masonryElement = "div.cards-container";
-	wVM.gerechten.subscribe(function(newGerechten) {
-		imgLoad = imagesLoaded(document.querySelector(masonryElement));
-		imgLoad.on('always', function() {
-			msnry = new Masonry( masonryElement, {
-				columnWidth: '.card-container',
-				itemSelector: '.card-container'
-			});
-		});
+	uVM.user.subscribe(function(newValue) {
+		wVM.user(newValue);
 	});
-	*/
+	
+	ko.applyBindings(wVM, document.getElementById('mainContent'));
+	ko.applyBindings(uVM, document.getElementById('userInfo'));
 });

@@ -20,7 +20,7 @@ var mainController = function() {
 	}	
 
 	var renderLogin = function(req,res) {
-		res.render('container', 
+		res.render('wizardContainer', 
 		{
 			partials: { body: 'login' }
 		});

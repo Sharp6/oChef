@@ -1,4 +1,4 @@
-var maaltijdController = function(Maaltijd, maaltijdDA) {
+var maaltijdController = function(Maaltijd, maaltijdDA, gerechtDA) {
 	// Middleware controllers
 	var fetchMaaltijd = function(req,res,next) {
 		Maaltijd.findById(req.params.id).populate('gerecht').exec(function(err,maaltijd) {
@@ -48,7 +48,10 @@ var maaltijdController = function(Maaltijd, maaltijdDA) {
 			.then(function(updatedMaaltijd) {
 				console.log("updatedMaaltijd:");
 				console.log(updatedMaaltijd);
-				res.json(updatedMaaltijd);
+				return gerechtDA.addMaaltijd(maaltijdData.gerecht, updatedMaaltijd._id);
+			})
+			.then(function(updatedGerecht) {
+				res.json("ok");
 			})
 			.catch(function(err) {
 				console.log(err);

@@ -6,8 +6,10 @@ define(["knockout", "da/ingredient.da.client"], function(ko, ingredientDA) {
     self.naam = ko.observable(data.naam || '');
     self.beschrijving = ko.observable(data.beschrijving || '');
     self.nota = ko.observable(data.nota || '');
+    self.inDiepvries = ko.observable(data.inDiepvries || false);
     self.maandenInSeizoen = ko.observableArray(data.maandenInSeizoen);
     self.tags = ko.observableArray(data.tags);
+    self.inSeizoen = ko.observable(data.inSeizoen);
   
     self.getMonth = function(number) {
     	var months = ["jan", "feb", "maa", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
@@ -30,6 +32,16 @@ define(["knockout", "da/ingredient.da.client"], function(ko, ingredientDA) {
     self.removeTag = function(tag) {
       self.tags.remove(tag);
     }
+
+    self.seizoenClass = ko.computed(function() {
+      if(self.inSeizoen()) {
+        return 'label-success';
+      } else if(self.inSeizoen() === false) {
+        return 'label-danger';
+      } else {
+        return 'label-info';
+      }
+    })
 
   }
   return ingredientModel;

@@ -1,5 +1,4 @@
 // POLYFILL
-
 if (!Array.prototype.findIndex) {
   Array.prototype.findIndex = function(predicate) {
     if (this === null) {
@@ -36,6 +35,8 @@ var session = require('express-session');
 var Busboy = require('busboy');
 var Grid = require("gridfs-stream");
 
+var moment = require('moment');
+
 var app = express();
 
 if(app.get('env') === "development") {
@@ -54,25 +55,30 @@ var gfs = Grid(mongodb.db, mongoose.mongo);
 
 var authRoutes = require('./routes/auth.routes');
 
-var Ingredient = require('./models/ingredient.model.server')(mongoose);
-var ingredientDA = require('./da/ingredient.da.server')(Ingredient);
-var ingredientCtrl = require('./controllers/ingredient.controller.server')(Ingredient, ingredientDA);
-var ingredientRoutes = require('./routes/ingredient.routes')(ingredientCtrl);
-
-var Gerecht = require('./models/gerecht.model.server')(mongoose, Ingredient);
-var gerechtDA = require('./da/gerecht.da.server')(Gerecht, gfs);
-var gerechtCtrl = require('./controllers/gerecht.controller.server')(Gerecht, gerechtDA, Busboy);
-var gerechtRoutes = require('./routes/gerecht.routes')(gerechtCtrl);
-
+var Ingredient = require('./models/ingredient.model.server')(mongoose, moment);
 var Maaltijd = require('./models/maaltijd.model.server')(mongoose);
+var Gerecht = require('./models/gerecht.model.server')(mongoose, moment, Ingredient, Maaltijd);
+
+
+var ingredientDA = require('./da/ingredient.da.server')(Ingredient);
 var maaltijdDA = require('./da/maaltijd.da.server')(Maaltijd);
-var maaltijdCtrl = require('./controllers/maaltijd.controller.server')(Maaltijd, maaltijdDA);
+var gerechtDA = require('./da/gerecht.da.server')(Gerecht, gfs);
+
+var ingredientCtrl = require('./controllers/ingredient.controller.server')(Ingredient, ingredientDA);
+var gerechtCtrl = require('./controllers/gerecht.controller.server')(Gerecht, gerechtDA, Busboy);
+var maaltijdCtrl = require('./controllers/maaltijd.controller.server')(Maaltijd, maaltijdDA, gerechtDA);
+
+
+var ingredientRoutes = require('./routes/ingredient.routes')(ingredientCtrl);
+var gerechtRoutes = require('./routes/gerecht.routes')(gerechtCtrl);
 var maaltijdRoutes = require('./routes/maaltijd.routes')(maaltijdCtrl);
+
 
 var mainCtrl = require('./controllers/main.controller.server')();
 
 var homeRoutes = require('./routes/home.routes')(mainCtrl);
 var userRoutes = require('./routes/users.routes')(mainCtrl);
+var wizardRoutes = require('./routes/wizard.routes')(mainCtrl);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -99,6 +105,7 @@ app.use('/', ingredientRoutes);
 app.use('/', gerechtRoutes);
 app.use('/', maaltijdRoutes);
 app.use('/', homeRoutes);
+app.use('/', wizardRoutes);
 
 
 // catch 404 and forward to error handler

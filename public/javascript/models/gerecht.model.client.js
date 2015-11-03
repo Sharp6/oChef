@@ -7,10 +7,15 @@ define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client"], f
     self.naam = ko.observable(data.naam || '');
     self.beschrijving = ko.observable(data.beschrijving || '');
     self.nota = ko.observable(data.nota || '');
-    self.rating = ko.observable(data.userRating || 0);
+    self.bron = ko.observable(data.bron || '');
+    self.recept = ko.observable(data.recept || '');
+    self.referentie = ko.observable(data.referentie || '');
+    self.rating = ko.observable(data.userRating);
     self.ratings = ko.observableArray();
     self.takeout = ko.observable(data.takeout || false);
     self.ingredienten = ko.observableArray();
+    self.inDiepvries = ko.observable(data.inDiepvries || false);
+    self.scores =  ko.observableArray();
     self.fileData = ko.observable({
       dataURL: ko.observable(),
       file: ko.observable()
@@ -33,12 +38,25 @@ define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client"], f
       });  
     }
 
+    if(data.historyScore) {
+      self.scores.push({ scoreName: 'history', score: data.historyScore, label: 'Recentheids-score' });
+    }
+
+    if(data.ratingScore) {
+      self.scores.push({ scoreName: 'rating', score: data.ratingScore, label: 'Rating-score' }); 
+    }
+
+    if(data.seizoenScore) {
+      self.scores.push({ scoreName: 'seizoen', score: data.seizoenScore, label: 'Seizoens-score' }); 
+    }
+
     if(data.ratings) {
       data.ratings.forEach(function(rating) {
         self.ratings.push(rating.waarde);
       });
     }
 
+    // This should be removed
     self.averageRating = ko.computed(function() {
       var totaal = 0;
       self.ratings().forEach(function(ratingWaarde) {
@@ -46,8 +64,11 @@ define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client"], f
       });
       if(self.ratings().length > 0) {
         totaal = totaal / self.ratings().length;
+        return totaal;
+      } else {
+        return;  
       }
-      return totaal;
+      
     });
     
     self.save = function() {
