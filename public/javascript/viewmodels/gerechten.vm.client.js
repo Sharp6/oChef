@@ -31,6 +31,11 @@ define(["knockout",
     }
 
     self.allTags = ko.observableArray();
+    self.currentTag = ko.observable();
+
+    self.addCurrentTag = function() {
+      self.currentGerecht().addTag(self.currentTag());
+    }
 
     self.pageNumber = ko.observable(0);
     self.displayedPageNumber = ko.computed(function() {

@@ -6,7 +6,8 @@ require.config({
 		"binding-typeahead" : { "deps": ['bootstrap'] },
 		"knockoutFileBindings" : { "deps": ['knockout', 'jquery'] },
 		"knockoutMarkdownBindings" : { "deps" : ['knockout', 'markdown'] },
-		"koStarRating" : { "deps" : ['knockout', 'jquery'] }
+		"koStarRating" : { "deps" : ['knockout', 'jquery'] },
+		"knockoutTypeaheadBinding" : { "deps" : ['bootstrap', 'typeahead' ]}
 	},
 	paths: {
 		jquery: '/libraries/jquery-2.1.3.min',
@@ -16,12 +17,14 @@ require.config({
 		markdown: '/libraries/markdown-it.min',
 		bootstrap: '/libraries/bootstrap.min',
 		moment: '/libraries/moment-with-locales.min',
-		koStarRating: '/libraries/ko-starRating'
+		koStarRating: '/libraries/ko-starRating',
+		typeahead: '/libraries/bootstrap3-typeahead.min',
+		knockoutTypeaheadBinding: '/libraries/binding-typeahead'
 	}
 });
 
-require(["jquery", "bootstrap", "knockout", "knockoutFileBindings", "koStarRating", "knockoutMarkdownBindings", "viewmodels/gerechten.vm.client"], 
-function($, bootstrap, ko, koFileBindings, koStarRating, koMarkdownBindings, GerechtVM) {
+require(["jquery", "bootstrap", "typeahead", "knockout", "knockoutFileBindings", "koStarRating", "knockoutMarkdownBindings", "knockoutTypeaheadBinding", "viewmodels/gerechten.vm.client"], 
+function($, bootstrap, typeahead, ko, koFileBindings, koStarRating, koMarkdownBindings, koTypeaheadBinding, GerechtVM) {
 	var gVM = new GerechtVM();
 	gVM.init();
 	ko.applyBindings(gVM);

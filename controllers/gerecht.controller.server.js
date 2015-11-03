@@ -51,6 +51,7 @@ var gerechtCtrl = function(Gerecht, gerechtDA, Busboy) {
 		req.gerecht.beschrijving = gerechtData.beschrijving;
 		req.gerecht.ingredienten = gerechtData.ingredienten;
 		req.gerecht.inDiepvries = gerechtData.inDiepvries;
+		req.gerecht.tags = gerechtData.tags;
 
 		var index = req.gerecht.ratings.findIndex(function(element, index, array) {
 			return element.userId == req.user._id;

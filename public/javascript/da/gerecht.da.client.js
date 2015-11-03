@@ -62,6 +62,7 @@ define(['jquery'], function($){
 		save: updateGerecht,
 		remove: removeGerecht,
 		create: createGerechten, 
+		loadTags: loadTags,
 		saveFile: saveFile
 	};
 });

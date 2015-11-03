@@ -5,7 +5,7 @@ require.config({
 		"typeahead" : { "deps" : ['bootstrap']},
 		"binding-typeahead" : { "deps": ['bootstrap']},
 		"bootstrap-select" : { "deps" : ['bootstrap'] },
-		"datepicker" : { "deps": ['bootstrap-select']},
+		"datepicker" : { "deps": ['bootstrap']},
 		"kodatepicker" : { 'deps' : ['datepicker'] }
 	},
 	paths: {
@@ -14,12 +14,12 @@ require.config({
 		bootstrap: '/libraries/bootstrap.min',
 		moment: '/libraries/moment-with-locales.min',
 		datepicker: '/libraries/bootstrap-datepicker',
-		'bootstrap-select': '/libraries/bootstrap-select',
+		//'bootstrap-select': '/libraries/bootstrap-select',
 		kodatepicker : '/libraries/ko-datepicker'
 	}
 });
 
-require(["jquery", "bootstrap", "bootstrap-select", "datepicker", "knockout", "kodatepicker", "viewmodels/maaltijden.vm.client"], function($, bootstrap, bootstrapselect, datepicker, ko, kodatepicker, MaaltijdVM) {
+require(["jquery", "bootstrap", "datepicker", "knockout", "kodatepicker", "viewmodels/maaltijden.vm.client"], function($, bootstrap, datepicker, ko, kodatepicker, MaaltijdVM) {
 	var mVM = new MaaltijdVM();
 	mVM.init();
 	ko.applyBindings(mVM);

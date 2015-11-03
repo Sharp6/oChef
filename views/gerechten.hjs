@@ -80,7 +80,20 @@
             <span data-bind="text:$data"></span>
           </div>
           <div data-bind="visible:$parent.editMode">
-            <input type="text" />
+            <input type="text" class="form-control" data-bind="typeahead: $parent.allTags, value: $parent.currentTag" />
+            <button data-bind="click:$parent.addCurrentTag">Add tag</button>
+            <table class="table-condensed">
+              <thead>
+                <th>Tag</th>
+                <th></th>
+              </thead>
+              <tbody data-bind="foreach:tags">
+                <tr>
+                  <td data-bind="text:$data"></td>
+                  <td><button class="btn btn-xs" data-bind="click:$parent.removeTag">-</button></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 

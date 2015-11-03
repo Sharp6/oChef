@@ -71,6 +71,15 @@ define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client"], f
       }
       
     });
+
+    self.addTag = function(tag) {
+      // TODO: add logic for not duplicating things
+      self.tags.push(tag);
+    }
+
+    self.removeTag = function(tag) {
+      self.tags.remove(tag);
+    }
     
     self.save = function() {
       //return gerechtCtrl.save(ko.toJSON(self));
