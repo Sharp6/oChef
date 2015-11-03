@@ -30,6 +30,8 @@ define(["knockout",
       return candidate.dbId() === testGerecht.dbId();
     }
 
+    self.allTags = ko.observableArray();
+
     self.pageNumber = ko.observable(0);
     self.displayedPageNumber = ko.computed(function() {
       return self.pageNumber() + 1;
@@ -111,9 +113,19 @@ define(["knockout",
         });
     }
 
+    self.loadTags = function() {
+        gerechtDA.loadTags()
+            .then(function(tags) {
+                tags.forEach(function(tag) {
+                    self.allTags.push(tag);
+                });
+            });
+    }
+
     self.init = function() {
       self.loadGerechten();
       self.loadIngredienten();
+      self.loadTags();
     }
   };
 

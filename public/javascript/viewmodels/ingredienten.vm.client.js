@@ -57,10 +57,6 @@ define(["knockout", "da/ingredient.da.client", "models/ingredient.model.client"]
             }
         }
 
-
-
-
-
         self.editMode = ko.observable(false);
         self.notEditMode = ko.computed(function() {
         	return !self.editMode();

@@ -41,6 +41,10 @@ define(['jquery'], function($){
 		}).promise();
 	};
 
+	var loadTags = function() {
+		return $.getJSON("/api/gerechtenTags").promise();
+	}
+
 	var saveFile = function(file, gerechtId) {
 		var fd = new FormData();
 		fd.append("imgFile", file);

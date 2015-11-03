@@ -75,6 +75,16 @@
         </div>
 
         <div>
+          <h5>Tags</h5>
+          <div data-bind="foreach:tags, visible: $parent.notEditMode">
+            <span data-bind="text:$data"></span>
+          </div>
+          <div data-bind="visible:$parent.editMode">
+            <input type="text" />
+          </div>
+        </div>
+
+        <div>
           <h5>In diepvries</h5>
           <div><input type="checkbox" data-bind="checked:inDiepvries" /> In diepvries</div>
         </div>

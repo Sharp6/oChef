@@ -34,6 +34,11 @@ var gerechtRoutes = function(gerechtCtrl) {
 			return gerechtCtrl.uploadImage(req,res);
 		});
 
+	gerechtRouter.route('/api/gerechtenTags')
+		.get(function(req,res) {
+			return gerechtCtrl.getTags(req,res):
+		});
+
 	gerechtRouter.use('/gerechten', function(req,res,next) {
 		if(!req.user) {
 			res.redirect('/login');
