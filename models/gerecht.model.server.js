@@ -27,7 +27,8 @@ var Gerecht = function(mongoose, moment, Ingredient, Maaltijd) {
 				ref: 'User'
 			},
 			waarde: Number
-		}]
+		}], 
+		tags: [String]
 	});
 
 	gerechtSchema.virtual('userId').set(function(userId) {
