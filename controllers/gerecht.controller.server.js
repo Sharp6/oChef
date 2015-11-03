@@ -117,7 +117,7 @@ var gerechtCtrl = function(Gerecht, gerechtDA, Busboy) {
 			} else {
 				res.json(tags);	
 			}
-		}):
+		});
 	}
 
 	// Images

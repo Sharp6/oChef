@@ -36,7 +36,7 @@ var gerechtRoutes = function(gerechtCtrl) {
 
 	gerechtRouter.route('/api/gerechtenTags')
 		.get(function(req,res) {
-			return gerechtCtrl.getTags(req,res):
+			return gerechtCtrl.getTags(req,res);
 		});
 
 	gerechtRouter.use('/gerechten', function(req,res,next) {
