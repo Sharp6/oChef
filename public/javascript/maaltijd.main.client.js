@@ -1,10 +1,11 @@
 require.config({
 	shim : {
+		"jquery": { "exports": "$" },
 		"hotkeys" : { "deps" : ['jquery']},
-		"bootstrap" : { "deps" :['jquery'] },
+		"bootstrap" : { "deps" :['jquery']},
 		"typeahead" : { "deps" : ['bootstrap']},
 		"binding-typeahead" : { "deps": ['bootstrap']},
-		"bootstrap-select" : { "deps" : ['bootstrap'] },
+		//"bootstrap-select" : { "deps" : ['bootstrap'] },
 		"datepicker" : { "deps": ['bootstrap']},
 		"kodatepicker" : { 'deps' : ['datepicker'] }
 	},
@@ -19,13 +20,12 @@ require.config({
 	}
 });
 
-require(["jquery", "bootstrap", "datepicker", "knockout", "kodatepicker", "viewmodels/maaltijden.vm.client"], function($, bootstrap, datepicker, ko, kodatepicker, MaaltijdVM) {
+require(["jquery", "bootstrap", "knockout", "kodatepicker", "viewmodels/maaltijden.vm.client"], 
+	function($, bootstrap, ko, kodatepicker, MaaltijdVM) {
 	var mVM = new MaaltijdVM();
 	mVM.init();
 	ko.applyBindings(mVM);
 
 	$('.nav li').removeClass('active');
  	$('#maaltijdenMenu').addClass('active');
-
-	
 });

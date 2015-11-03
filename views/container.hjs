@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/jumbotron-narrow.css">
     <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap-datepicker.css">
     <!--<link rel='stylesheet' href='/stylesheets/ct-paper.css' />//-->
     <link rel='stylesheet' href='/stylesheets/knockout-file-bindings.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
