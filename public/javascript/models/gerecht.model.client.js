@@ -1,5 +1,5 @@
-define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client", "da/maaltijd.da.client"], 
-function(ko, gerechtDA, Ingredient, maaltijdDA) {
+define(["knockout", "da/gerecht.da.client", "models/ingredient.model.client", "models/maaltijd.model.client", "da/maaltijd.da.client"], 
+function(ko, gerechtDA, Ingredient, Maaltijd, maaltijdDA) {
   var gerechtModel = function(data) {
 
     var self = this;
@@ -18,6 +18,7 @@ function(ko, gerechtDA, Ingredient, maaltijdDA) {
     self.inDiepvries = ko.observable(data.inDiepvries || false);
     self.scores =  ko.observableArray();
     self.tags = ko.observableArray(data.tags);
+    self.maaltijden = ko.observableArray();
     self.fileData = ko.observable({
       dataURL: ko.observable(),
       file: ko.observable()
@@ -38,6 +39,12 @@ function(ko, gerechtDA, Ingredient, maaltijdDA) {
       data.ingredienten.forEach(function(ingredientData) {
         self.ingredienten.push(new Ingredient(ingredientData));
       });  
+    }
+
+    if(data.maaltijden && data.maaltijden.length > 0) {
+      data.maaltijden.forEach(function(maaltijdData) {
+        self.maaltijden.push(new Maaltijd(maaltijdData));
+      });
     }
 
     if(data.historyScore) {
