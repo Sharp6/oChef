@@ -135,6 +135,3 @@ var Gerecht = function(mongoose, moment, Ingredient, Maaltijd) {
 }
 
 module.exports = Gerecht;
-
-
-

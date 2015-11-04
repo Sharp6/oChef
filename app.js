@@ -67,12 +67,12 @@ var gerechtDA = require('./da/gerecht.da.server')(Gerecht, gfs);
 var ingredientCtrl = require('./controllers/ingredient.controller.server')(Ingredient, ingredientDA);
 var gerechtCtrl = require('./controllers/gerecht.controller.server')(Gerecht, gerechtDA, Busboy);
 var maaltijdCtrl = require('./controllers/maaltijd.controller.server')(Maaltijd, maaltijdDA, gerechtDA);
-
+var reportingCtrl = require('./controllers/reporting.controller.server')(Maaltijd, Gerecht);
 
 var ingredientRoutes = require('./routes/ingredient.routes')(ingredientCtrl);
 var gerechtRoutes = require('./routes/gerecht.routes')(gerechtCtrl);
 var maaltijdRoutes = require('./routes/maaltijd.routes')(maaltijdCtrl);
-
+var reportingRoutes = require('./routes/reporting.routes')(reportingCtrl);
 
 var mainCtrl = require('./controllers/main.controller.server')();
 
@@ -97,8 +97,6 @@ app.use(session({secret: 'oChefSession'}));
 require('./config/passport')(app, User);
 
 
-
-
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
 app.use('/', ingredientRoutes);
@@ -106,7 +104,7 @@ app.use('/', gerechtRoutes);
 app.use('/', maaltijdRoutes);
 app.use('/', homeRoutes);
 app.use('/', wizardRoutes);
-
+app.use('/reporting', reportingRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

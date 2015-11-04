@@ -1,13 +1,10 @@
 var maaltijdDA = function(Maaltijd) {
 	var updateMaaltijd = function(req) {
 		return new Promise(function(resolve,reject) {
-			console.log("here");
 			req.maaltijd.save(function(err) {
 				if(err) {
-					console.log("err" + err);
 					reject(err);
 				} else {
-					console.log("Got here");
 					resolve(req.maaltijd);
 				}
 			});
