@@ -71,14 +71,14 @@
 				</div> 
 				<div class="content">
 					<div class="main">
+						<div class="center">
+							<button class="btn btn-primary btn-xs" data-bind="click:quickSaveMaaltijd">Vandaag gegeten!</button>
+						</div>
 						<h4 class="text-center">Ingrediënten</h4>
 						<span data-bind="visible:takeout" class="label label-info">takeout</span>
 						<div data-bind="foreach:ingredienten">
-			          	  <span data-bind="text:naam, css: seizoenClass" class="label"></span>
-			            </div>
-			            <div>
-			            	<button class="btn" data-bind="click:quickSaveMaaltijd">Vandaag gegeten!</button>
-			            </div>
+							<span data-bind="text:naam, css: seizoenClass" class="label"></span>
+						</div>
 
 	          <h4 class="text-center">Scores</h4>
 	          <ul data-bind="foreach:scores">
