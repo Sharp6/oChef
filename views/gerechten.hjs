@@ -141,6 +141,13 @@
         <button class="btn btn-primary" data-bind="click:saveFile">upload Img</button>
       </div>
 
+      <div data-bind="visible:$parent.notEditMode">
+        <h5>Maaltijden</h5>
+        <ul data-bind="foreach:maaltijden">
+          <li data-bind="text:datum"></li>
+        </ul>
+      </div>
+
       <div>
         <h3>Rating</h3>
         <p data-bind="starRating:rating"></p>

@@ -10,7 +10,7 @@ define(["knockout", "moment", "da/maaltijd.da.client", "models/gerecht.model.cli
     self.gerecht = ko.observable();
 
 
-    if(data.gerecht) {
+    if(data.gerecht && data.gerecht.naam) {
       self.gerecht(new Gerecht(data.gerecht));
     }
     
